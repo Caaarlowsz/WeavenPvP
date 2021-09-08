@@ -1,0 +1,6 @@
+main: br.com.skyprogrammer.cophenix.zenixpvp.Handler
+name: WeavenPvP
+version: 0.0.1-SNAPSHOT
+author: skyprogrammer
+website: loja.weavenmc.com.br
+description: An exclusive kit-pvp server system

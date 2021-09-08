@@ -1,0 +1,42 @@
+Permissions:
+  Groups:
+    dono:
+    - '*'
+    diretor:
+    - ''
+    dev:
+    - ''
+    gerente:
+    - ''
+    admin:
+    - ''
+    modplus:
+    - ''
+    modgc:
+    - ''
+    mod:
+    - ''
+    trial:
+    - ''
+    youtuberplus:
+    - ''
+    builder:
+    - ''
+    ajudante:
+    - ''
+    designer:
+    - ''
+    youtuber:
+    - ''
+    elite:
+    - ''
+    ultimate:
+    - ''
+    beta:
+    - ''
+    premium:
+    - ''
+    light:
+    - ''
+    membro:
+    - ''
