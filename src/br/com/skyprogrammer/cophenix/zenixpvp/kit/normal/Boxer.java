@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
 
@@ -30,8 +30,8 @@ public class Boxer extends Kit {
 				&& localEntityDamageByEntityEvent.getDamager() instanceof Player) {
 			final Player localDamaged = (Player) localEntityDamageByEntityEvent.getEntity();
 			final Player localDamager = (Player) localEntityDamageByEntityEvent.getDamager();
-			final Gamer localGamerDamaged = Handler.getManager().getGamerManager().getGamer(localDamaged.getUniqueId());
-			final Gamer localGamerDamager = Handler.getManager().getGamerManager().getGamer(localDamager.getUniqueId());
+			final Gamer localGamerDamaged = WeavenPvP.getManager().getGamerManager().getGamer(localDamaged.getUniqueId());
+			final Gamer localGamerDamager = WeavenPvP.getManager().getGamerManager().getGamer(localDamager.getUniqueId());
 			double doubleOfTheDamage = localEntityDamageByEntityEvent.getDamage();
 			if (localGamerDamager.getKit() == this) {
 				doubleOfTheDamage += 0.25;

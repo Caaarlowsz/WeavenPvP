@@ -9,7 +9,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 
 public class CombatHandler extends ListenerHandler {
 	public static ConcurrentHashMap<Player, String> concurrentMapOfCombat;
@@ -20,7 +20,7 @@ public class CombatHandler extends ListenerHandler {
 		CombatHandler.concurrentMapOfTask = new ConcurrentHashMap<Player, BukkitTask>();
 	}
 
-	public CombatHandler(final Handler instanceOfHandler) {
+	public CombatHandler(final WeavenPvP instanceOfHandler) {
 		super(instanceOfHandler);
 	}
 
@@ -30,7 +30,7 @@ public class CombatHandler extends ListenerHandler {
 			public void run() {
 				CombatHandler.removeCombat(playerToAdd);
 			}
-		}.runTaskLater((Plugin) Handler.getInstance(), 160L));
+		}.runTaskLater((Plugin) WeavenPvP.getInstance(), 160L));
 	}
 
 	public static boolean onCombat(final Player playerToCheck) {

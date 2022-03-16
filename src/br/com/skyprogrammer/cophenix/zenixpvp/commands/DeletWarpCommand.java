@@ -3,7 +3,7 @@ package br.com.skyprogrammer.cophenix.zenixpvp.commands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CommandHandler;
 
 public class DeletWarpCommand extends CommandHandler {
@@ -23,19 +23,19 @@ public class DeletWarpCommand extends CommandHandler {
 			return true;
 		}
 		if (commandArgs.length == 0) {
-			localPlayer.sendMessage("§e§lDELETWARP§f Utilize: /deletwarp <nome da warp>");
+			localPlayer.sendMessage("ï¿½eï¿½lDELETWARPï¿½f Utilize: /deletwarp <nome da warp>");
 			return true;
 		}
 		if (commandArgs.length != 1) {
-			localPlayer.sendMessage("§e§lDELETWARP§f Utilize: /deletwarp <nome da warp>");
+			localPlayer.sendMessage("ï¿½eï¿½lDELETWARPï¿½f Utilize: /deletwarp <nome da warp>");
 			return true;
 		}
-		if (!Handler.getManager().getWarps().hasWarp(commandArgs[0])) {
-			localPlayer.sendMessage("§cEsta §fWARP NUNCA§c foi setada!");
+		if (!WeavenPvP.getManager().getWarps().hasWarp(commandArgs[0])) {
+			localPlayer.sendMessage("ï¿½cEsta ï¿½fWARP NUNCAï¿½c foi setada!");
 			return true;
 		}
-		Handler.getManager().getWarps().delet(commandArgs[0]);
-		localPlayer.sendMessage("§2Voc\u00ea §fDELETOU§2 a §fWARP " + commandArgs[0].toUpperCase());
+		WeavenPvP.getManager().getWarps().delet(commandArgs[0]);
+		localPlayer.sendMessage("ï¿½2Voc\u00ea ï¿½fDELETOUï¿½2 a ï¿½fWARP " + commandArgs[0].toUpperCase());
 		return true;
 	}
 }

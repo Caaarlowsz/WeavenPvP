@@ -3,7 +3,7 @@ package br.com.skyprogrammer.cophenix.zenixpvp.commands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CommandHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.onevsone.X1WarpListener;
@@ -18,18 +18,18 @@ public class WarpCommand extends CommandHandler {
 		if (this.isPlayerSender(commandSender)) {
 			final Player localPlayer = this.getPlayerInstance(commandSender);
 			if (commandArgs.length == 0) {
-				localPlayer.sendMessage("§e§lWARP§f Utilize: /warp <nome da warp>");
+				localPlayer.sendMessage("ï¿½eï¿½lWARPï¿½f Utilize: /warp <nome da warp>");
 				return true;
 			}
 			if (commandArgs.length == 1) {
-				if (!Handler.getManager().getWarps().hasWarp(commandArgs[0])) {
-					localPlayer.sendMessage("§cEsta §fWARP§c n\u00e3o foi §fENCONTRADA§c!");
+				if (!WeavenPvP.getManager().getWarps().hasWarp(commandArgs[0])) {
+					localPlayer.sendMessage("ï¿½cEsta ï¿½fWARPï¿½c n\u00e3o foi ï¿½fENCONTRADAï¿½c!");
 					return true;
 				}
-				localPlayer.teleport(Handler.getManager().getWarps().getLocation(commandArgs[0]));
+				localPlayer.teleport(WeavenPvP.getManager().getWarps().getLocation(commandArgs[0]));
 				if (!commandArgs[0].equalsIgnoreCase("fps")) {
 					if (commandArgs[0].equalsIgnoreCase("1v1")) {
-						final Gamer gamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+						final Gamer gamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 						gamer.setWarp("1v1");
 						X1WarpListener.loadWarp1v1Methods(localPlayer);
 					} else if (!commandArgs[0].equalsIgnoreCase("challenge")) {
@@ -37,7 +37,7 @@ public class WarpCommand extends CommandHandler {
 					}
 				}
 				localPlayer
-						.sendMessage("§2Voc\u00ea foi §fTELEPORTADO§2 para a §fWARP " + commandArgs[0].toUpperCase());
+						.sendMessage("ï¿½2Voc\u00ea foi ï¿½fTELEPORTADOï¿½2 para a ï¿½fWARP " + commandArgs[0].toUpperCase());
 				return true;
 			}
 		}

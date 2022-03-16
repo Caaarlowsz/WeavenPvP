@@ -10,13 +10,13 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 
 public class WarpConfig {
 	private static FileConfiguration fileConfiguration;
 	private static File file;
 
-	public WarpConfig(final Handler handlerInstance, final String exactlyNameOfTheFile) {
+	public WarpConfig(final WeavenPvP handlerInstance, final String exactlyNameOfTheFile) {
 		if (!handlerInstance.getDataFolder().exists()) {
 			handlerInstance.getDataFolder().mkdir();
 		}

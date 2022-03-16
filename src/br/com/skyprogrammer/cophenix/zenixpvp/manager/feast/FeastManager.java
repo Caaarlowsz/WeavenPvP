@@ -16,7 +16,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.manager.Manager;
 
 public class FeastManager {
@@ -33,29 +33,29 @@ public class FeastManager {
 		final int minutes = timeBeforeSpawn % 3600 / 60;
 		final int seconds = timeBeforeSpawn % 3600 % 60;
 		if (minutes <= 2 && seconds == 0) {
-			Bukkit.broadcastMessage("§4§lFEAST§f ir\u00e1 spawnar em §e" + minutes
-					+ " minutos§7. Digite: §f/feast§7 para apontar a b\u00fassola.");
+			Bukkit.broadcastMessage("ï¿½4ï¿½lFEASTï¿½f ir\u00e1 spawnar em ï¿½e" + minutes
+					+ " minutosï¿½7. Digite: ï¿½f/feastï¿½7 para apontar a b\u00fassola.");
 		} else if (minutes < 1 && seconds == 30) {
-			Bukkit.broadcastMessage("§4§lFEAST§f ir\u00e1 spawnar em §e" + seconds
-					+ " segundos§7. Digite: §f/feast§7 para apontar a b\u00fassola.");
+			Bukkit.broadcastMessage("ï¿½4ï¿½lFEASTï¿½f ir\u00e1 spawnar em ï¿½e" + seconds
+					+ " segundosï¿½7. Digite: ï¿½f/feastï¿½7 para apontar a b\u00fassola.");
 		} else if (minutes < 1 && seconds == 10) {
-			Bukkit.broadcastMessage("§4§lFEAST§f ir\u00e1 spawnar em §e" + seconds
-					+ " segundos§7. Digite: §f/feast§7 para apontar a b\u00fassola.");
+			Bukkit.broadcastMessage("ï¿½4ï¿½lFEASTï¿½f ir\u00e1 spawnar em ï¿½e" + seconds
+					+ " segundosï¿½7. Digite: ï¿½f/feastï¿½7 para apontar a b\u00fassola.");
 		} else if (minutes < 1 && seconds == 5) {
-			Bukkit.broadcastMessage("§4§lFEAST§f ir\u00e1 spawnar em §e" + seconds
-					+ " segundos§7. Digite: §f/feast§7 para apontar a b\u00fassola.");
+			Bukkit.broadcastMessage("ï¿½4ï¿½lFEASTï¿½f ir\u00e1 spawnar em ï¿½e" + seconds
+					+ " segundosï¿½7. Digite: ï¿½f/feastï¿½7 para apontar a b\u00fassola.");
 		} else if (minutes < 1 && seconds == 4) {
-			Bukkit.broadcastMessage("§4§lFEAST§f ir\u00e1 spawnar em §e" + seconds
-					+ " segundos§7. Digite: §f/feast§7 para apontar a b\u00fassola.");
+			Bukkit.broadcastMessage("ï¿½4ï¿½lFEASTï¿½f ir\u00e1 spawnar em ï¿½e" + seconds
+					+ " segundosï¿½7. Digite: ï¿½f/feastï¿½7 para apontar a b\u00fassola.");
 		} else if (minutes < 1 && seconds == 3) {
-			Bukkit.broadcastMessage("§4§lFEAST§f ir\u00e1 spawnar em §e" + seconds
-					+ " segundos§7. Digite: §f/feast§7 para apontar a b\u00fassola.");
+			Bukkit.broadcastMessage("ï¿½4ï¿½lFEASTï¿½f ir\u00e1 spawnar em ï¿½e" + seconds
+					+ " segundosï¿½7. Digite: ï¿½f/feastï¿½7 para apontar a b\u00fassola.");
 		} else if (minutes < 1 && seconds == 2) {
-			Bukkit.broadcastMessage("§4§lFEAST§f ir\u00e1 spawnar em §e" + seconds
-					+ " segundos§7. Digite: §f/feast§7 para apontar a b\u00fassola.");
+			Bukkit.broadcastMessage("ï¿½4ï¿½lFEASTï¿½f ir\u00e1 spawnar em ï¿½e" + seconds
+					+ " segundosï¿½7. Digite: ï¿½f/feastï¿½7 para apontar a b\u00fassola.");
 		} else if (minutes < 1 && seconds == 1) {
-			Bukkit.broadcastMessage("§4§lFEAST§f ir\u00e1 spawnar em §e" + seconds
-					+ " segundo§7. Digite: §f/feast§7 para apontar a b\u00fassola.");
+			Bukkit.broadcastMessage("ï¿½4ï¿½lFEASTï¿½f ir\u00e1 spawnar em ï¿½e" + seconds
+					+ " segundoï¿½7. Digite: ï¿½f/feastï¿½7 para apontar a b\u00fassola.");
 		}
 	}
 
@@ -67,18 +67,18 @@ public class FeastManager {
 				FeastManager.access$1(this$0, this$0.feastTimer - 1);
 				if (FeastManager.this.feastTimer <= 0) {
 					FeastManager.this.items();
-					Bukkit.broadcastMessage("§4§lFEAST§f spawnou§7. Digite: §f/feast§7 para apontar a b\u00fassola.");
+					Bukkit.broadcastMessage("ï¿½4ï¿½lFEASTï¿½f spawnouï¿½7. Digite: ï¿½f/feastï¿½7 para apontar a b\u00fassola.");
 					FeastManager.access$2(FeastManager.this, new BukkitRunnable() {
 						public void run() {
 							FeastManager.this.start();
 						}
-					}.runTaskLater((Plugin) Handler.getInstance(), 600L));
+					}.runTaskLater((Plugin) WeavenPvP.getInstance(), 600L));
 					FeastManager.this.stop();
 				} else {
 					FeastManager.this.broadcast(FeastManager.this.feastTimer);
 				}
 			}
-		}.runTaskTimer((Plugin) Handler.getInstance(), 20L, 20L);
+		}.runTaskTimer((Plugin) WeavenPvP.getInstance(), 20L, 20L);
 	}
 
 	public void setTimer(final int timer) {

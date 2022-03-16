@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.api.tab.TabAPI;
 import br.com.skyprogrammer.cophenix.zenixpvp.config.account.AccountConfig;
 import br.com.skyprogrammer.cophenix.zenixpvp.config.feast.FeastConfig;
@@ -27,7 +27,7 @@ import br.com.skyprogrammer.cophenix.zenixpvp.utilitaries.loaders.CommandLoader;
 import br.com.weaven.master.account.WavePlayer;
 
 public class Manager {
-	private Handler instanceOfHandler;
+	private WeavenPvP instanceOfHandler;
 	private GamerManager instanceOfGamerManager;
 	private ScoreboardManager instanceOfScoreboardManager;
 	private KitManager instanceOfKitManager;
@@ -37,7 +37,7 @@ public class Manager {
 	private WarpConfig instanceOfWarpConfig;
 	private FeastConfig instanceOfFeastConfig;
 
-	public Manager(final Handler instanceOfHandler) {
+	public Manager(final WeavenPvP instanceOfHandler) {
 		this.instanceOfHandler = instanceOfHandler;
 		this.instanceOfGamerManager = new GamerManager();
 		this.instanceOfScoreboardManager = new ScoreboardManager(this);
@@ -65,11 +65,11 @@ public class Manager {
 					final int integerOfPingMs = ((CraftPlayer) localOnlinePlayers).getHandle().ping;
 					final int integerOfOnlinePlayers = Bukkit.getOnlinePlayers().length;
 					TabAPI.setTabTitleToPlayer(localOnlinePlayers,
-							"§6§lCELTZ §e§lKITPVP§eMoedas: §f" + wp.getMoney() + " §9§l- §ePing: §f" + integerOfPingMs
-									+ "\n§eNo momento temos §f" + integerOfOnlinePlayers + "§e jogadores no kitpvp!\n",
-							"\n   §bNick: §f" + localOnlinePlayers.getName() + " §9§l- §bLiga: "
-									+ wp.getLeague().toString() + " §9§l- §bXP: §f" + wp.getXp()
-									+ "\n§bMais informa\u00e7\u00f5es em §f" + "www.celtzmc.com");
+							"ï¿½6ï¿½lCELTZ ï¿½eï¿½lKITPVPï¿½eMoedas: ï¿½f" + wp.getMoney() + " ï¿½9ï¿½l- ï¿½ePing: ï¿½f" + integerOfPingMs
+									+ "\nï¿½eNo momento temos ï¿½f" + integerOfOnlinePlayers + "ï¿½e jogadores no kitpvp!\n",
+							"\n   ï¿½bNick: ï¿½f" + localOnlinePlayers.getName() + " ï¿½9ï¿½l- ï¿½bLiga: "
+									+ wp.getLeague().toString() + " ï¿½9ï¿½l- ï¿½bXP: ï¿½f" + wp.getXp()
+									+ "\nï¿½bMais informa\u00e7\u00f5es em ï¿½f" + "www.celtzmc.com");
 				}
 			}
 		}.runTaskTimer((Plugin) this.instanceOfHandler, 40L, 40L);

@@ -9,7 +9,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.ListenerHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.onevsone.X1WarpListener;
@@ -19,7 +19,7 @@ public class ProtectionManager extends ListenerHandler {
 	private boolean worldPvP;
 	private boolean worldDamage;
 
-	public ProtectionManager(final Handler instanceOfHandler) {
+	public ProtectionManager(final WeavenPvP instanceOfHandler) {
 		super(instanceOfHandler);
 		this.worldPvP = true;
 		this.worldDamage = true;
@@ -43,7 +43,7 @@ public class ProtectionManager extends ListenerHandler {
 				&& localEntityDamageByEntityEvent.getDamager() instanceof Player) {
 			final Player localEntity = (Player) localEntityDamageByEntityEvent.getEntity();
 			final Player damager = (Player) localEntityDamageByEntityEvent.getDamager();
-			final Gamer gamer = Handler.getManager().getGamerManager().getGamer(damager.getUniqueId());
+			final Gamer gamer = WeavenPvP.getManager().getGamerManager().getGamer(damager.getUniqueId());
 			if (gamer.getWarp().equalsIgnoreCase("1v1")) {
 				if (!X1WarpListener.playerfigh.containsKey(damager)) {
 					localEntityDamageByEntityEvent.setCancelled(true);
@@ -60,7 +60,7 @@ public class ProtectionManager extends ListenerHandler {
 	public void onEntityDamage(final EntityDamageEvent localEntityDamageEvent) {
 		if (localEntityDamageEvent.getEntity() instanceof Player) {
 			final Player localEntity = (Player) localEntityDamageEvent.getEntity();
-			final Gamer gamer = Handler.getManager().getGamerManager().getGamer(localEntity.getUniqueId());
+			final Gamer gamer = WeavenPvP.getManager().getGamerManager().getGamer(localEntity.getUniqueId());
 			if (gamer.getWarp().equalsIgnoreCase("1v1")) {
 				if (!X1WarpListener.playerfigh.containsKey(localEntity)) {
 					localEntityDamageEvent.setCancelled(true);

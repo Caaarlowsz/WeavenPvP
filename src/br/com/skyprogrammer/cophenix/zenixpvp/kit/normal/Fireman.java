@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
 
@@ -28,7 +28,7 @@ public class Fireman extends Kit {
 	public void onDamageFire(final EntityDamageEvent localEntityDamageEvent) {
 		if (localEntityDamageEvent.getEntity() instanceof Player) {
 			final Player localPlayer = (Player) localEntityDamageEvent.getEntity();
-			final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+			final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 			if (localGamer.getKit() == this && (localEntityDamageEvent.getCause() == EntityDamageEvent.DamageCause.FIRE
 					|| localEntityDamageEvent.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK
 					|| localEntityDamageEvent.getCause() == EntityDamageEvent.DamageCause.LAVA)) {

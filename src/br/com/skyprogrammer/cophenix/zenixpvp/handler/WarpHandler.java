@@ -23,7 +23,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.api.item.ItemBuilder;
 import br.com.skyprogrammer.cophenix.zenixpvp.api.title.TitleAPI;
@@ -33,10 +33,10 @@ import br.com.skyprogrammer.cophenix.zenixpvp.kit.normal.PvP;
 
 public class WarpHandler {
 	public static void removeKit(final Player playerToRemove) {
-		for (final Kit allKitOfList : Handler.getManager().getKitManager().getAllKits()) {
+		for (final Kit allKitOfList : WeavenPvP.getManager().getKitManager().getAllKits()) {
 			allKitOfList.removeAbilityIfHas(playerToRemove);
 		}
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(playerToRemove.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(playerToRemove.getUniqueId());
 		localGamer.setKit(new None());
 	}
 
@@ -45,7 +45,7 @@ public class WarpHandler {
 		final ItemStack bowlItemStack = new ItemBuilder().type(Material.BOWL).amount(64).build();
 		final ItemStack redItemStack = new ItemBuilder().type(Material.RED_MUSHROOM).amount(64).build();
 		final ItemStack brownItemStack = new ItemBuilder().type(Material.BROWN_MUSHROOM).amount(64).build();
-		final ItemStack compassItemStack = new ItemBuilder().name("§e§lBussola").type(Material.COMPASS).amount(1)
+		final ItemStack compassItemStack = new ItemBuilder().name("ï¿½eï¿½lBussola").type(Material.COMPASS).amount(1)
 				.build();
 		for (int i = 1; i < 36; ++i) {
 			player.getInventory().addItem(new ItemStack[] { soupItemStack });
@@ -67,18 +67,18 @@ public class WarpHandler {
 			Spawn.mapOfLinkedList = new HashMap<UUID, LinkedList<Kit>>();
 		}
 
-		public Spawn(final Handler instanceOfHandler) {
+		public Spawn(final WeavenPvP instanceOfHandler) {
 			super(instanceOfHandler);
 		}
 
 		@EventHandler
 		public void onMoveSpawn(final PlayerMoveEvent event) {
 			final Player player = event.getPlayer();
-			final Gamer gamer = Handler.getManager().getGamerManager().getGamer(player.getUniqueId());
-			if (Handler.getManager().getProtectionManager().isProtected(player)) {
+			final Gamer gamer = WeavenPvP.getManager().getGamerManager().getGamer(player.getUniqueId());
+			if (WeavenPvP.getManager().getProtectionManager().isProtected(player)) {
 				Location location = null;
-				if (Handler.getManager().getWarps().hasWarp("spawn")) {
-					location = Handler.getManager().getWarps().getLocation("spawn");
+				if (WeavenPvP.getManager().getWarps().hasWarp("spawn")) {
+					location = WeavenPvP.getManager().getWarps().getLocation("spawn");
 				} else {
 					location = player.getWorld().getSpawnLocation();
 				}
@@ -93,8 +93,8 @@ public class WarpHandler {
 						player.getInventory().setItem(0, kit.getItemStack());
 						WarpHandler.defaultItens(player, true);
 					}
-					Handler.getManager().getProtectionManager().setProtected(player, false);
-					player.sendMessage("§3§lPROTECTION§f Voc\u00ea §b§lPERDEU§f sua prote\u00e7\u00e3o de spawn.");
+					WeavenPvP.getManager().getProtectionManager().setProtected(player, false);
+					player.sendMessage("ï¿½3ï¿½lPROTECTIONï¿½f Voc\u00ea ï¿½bï¿½lPERDEUï¿½f sua prote\u00e7\u00e3o de spawn.");
 				}
 			}
 		}
@@ -104,9 +104,9 @@ public class WarpHandler {
 			if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
 				final Player entity = (Player) event.getEntity();
 				final Player damager = (Player) event.getDamager();
-				final Gamer gamer = Handler.getManager().getGamerManager().getGamer(damager.getUniqueId());
-				if (Handler.getManager().getProtectionManager().isProtected(damager)
-						&& !Handler.getManager().getProtectionManager().isProtected(entity)
+				final Gamer gamer = WeavenPvP.getManager().getGamerManager().getGamer(damager.getUniqueId());
+				if (WeavenPvP.getManager().getProtectionManager().isProtected(damager)
+						&& !WeavenPvP.getManager().getProtectionManager().isProtected(entity)
 						&& !gamer.getWarp().equalsIgnoreCase("1v1")) {
 					event.setCancelled(false);
 					gamer.setWarp("Arena");
@@ -119,9 +119,9 @@ public class WarpHandler {
 						damager.getInventory().setItem(0, kit.getItemStack());
 						WarpHandler.defaultItens(damager, true);
 					}
-					Handler.getManager().getProtectionManager().setProtected(damager, false);
-					damager.sendMessage("§3§lPROTECTION§f Voc\u00ea §b§lPERDEU§f sua prote\u00e7\u00e3o de spawn.");
-				} else if (Handler.getManager().getProtectionManager().isProtected(entity)) {
+					WeavenPvP.getManager().getProtectionManager().setProtected(damager, false);
+					damager.sendMessage("ï¿½3ï¿½lPROTECTIONï¿½f Voc\u00ea ï¿½bï¿½lPERDEUï¿½f sua prote\u00e7\u00e3o de spawn.");
+				} else if (WeavenPvP.getManager().getProtectionManager().isProtected(entity)) {
 					event.setCancelled(true);
 				}
 			}
@@ -132,7 +132,7 @@ public class WarpHandler {
 			final Player localPlayer = localPlayerInteractEvent.getPlayer();
 			final Action localAction = localPlayerInteractEvent.getAction();
 			final Material localMaterial = localPlayer.getItemInHand().getType();
-			final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+			final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 			if (localGamer.getWarp().equalsIgnoreCase("Spawn")) {
 				if (localMaterial == Material.CHEST && localAction.toString().contains("RIGHT")) {
 					localPlayerInteractEvent.setCancelled(true);
@@ -160,16 +160,16 @@ public class WarpHandler {
 				final Player localPlayer = (Player) localInventoryClickEvent.getWhoClicked();
 				final ItemStack localClickedItem = localInventoryClickEvent.getCurrentItem();
 				final String localInventoryName = localInventoryClickEvent.getInventory().getName();
-				if (localInventoryName.equalsIgnoreCase("§7Selecione seu kit (1)") && localClickedItem != null) {
+				if (localInventoryName.equalsIgnoreCase("ï¿½7Selecione seu kit (1)") && localClickedItem != null) {
 					localInventoryClickEvent.setCancelled(true);
 					if (localClickedItem.getType() == Material.CHEST) {
 						firstInventoryOfKits(localPlayer);
 					} else if (localClickedItem.getType() == Material.INK_SACK) {
-						if (localClickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("§aDescer")) {
+						if (localClickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½aDescer")) {
 							secondInventoryOfKits(localPlayer);
 						}
 					} else {
-						for (final Kit localKit : Handler.getManager().getKitManager().getAllKits()) {
+						for (final Kit localKit : WeavenPvP.getManager().getKitManager().getAllKits()) {
 							if (localClickedItem.getType() == localKit.getMaterial()) {
 								localPlayer.closeInventory();
 								localPlayer.getInventory().clear();
@@ -179,7 +179,7 @@ public class WarpHandler {
 								} else {
 									localPlayer.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD));
 								}
-								final Gamer localGamer = Handler.getManager().getGamerManager()
+								final Gamer localGamer = WeavenPvP.getManager().getGamerManager()
 										.getGamer(localPlayer.getUniqueId());
 								localGamer.setKit(localKit);
 								if (localKit.hasItem()) {
@@ -188,25 +188,25 @@ public class WarpHandler {
 								WarpHandler.defaultItens(localPlayer, true);
 								localPlayer.playSound(localPlayer.getLocation(), Sound.LEVEL_UP, 1.5f, 1.5f);
 								localPlayer.sendMessage(
-										"§2Voc\u00ea selecionou o kit §f" + localKit.getName().toUpperCase());
-								final TitleAPI title = new TitleAPI("§e§lKIT " + localKit.getName().toUpperCase(),
-										"§eSelecionado!");
+										"ï¿½2Voc\u00ea selecionou o kit ï¿½f" + localKit.getName().toUpperCase());
+								final TitleAPI title = new TitleAPI("ï¿½eï¿½lKIT " + localKit.getName().toUpperCase(),
+										"ï¿½eSelecionado!");
 								title.sendToPlayer(localPlayer);
 								localGamer.setWarp("Arena");
 								break;
 							}
 						}
 					}
-				} else if (localInventoryName.equalsIgnoreCase("§7Selecione seu kit (2)") && localClickedItem != null) {
+				} else if (localInventoryName.equalsIgnoreCase("ï¿½7Selecione seu kit (2)") && localClickedItem != null) {
 					localInventoryClickEvent.setCancelled(true);
 					if (localClickedItem.getType() == Material.CHEST) {
 						firstInventoryOfKits(localPlayer);
 					} else if (localClickedItem.getType() == Material.INK_SACK) {
-						if (localClickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("§aSubir")) {
+						if (localClickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("ï¿½aSubir")) {
 							firstInventoryOfKits(localPlayer);
 						}
 					} else {
-						for (final Kit localKit : Handler.getManager().getKitManager().getAllKits()) {
+						for (final Kit localKit : WeavenPvP.getManager().getKitManager().getAllKits()) {
 							if (localClickedItem.getType() == localKit.getMaterial()) {
 								localPlayer.closeInventory();
 								localPlayer.getInventory().clear();
@@ -216,7 +216,7 @@ public class WarpHandler {
 								} else {
 									localPlayer.getInventory().setItem(0, new ItemStack(Material.STONE_SWORD));
 								}
-								final Gamer localGamer = Handler.getManager().getGamerManager()
+								final Gamer localGamer = WeavenPvP.getManager().getGamerManager()
 										.getGamer(localPlayer.getUniqueId());
 								localGamer.setKit(localKit);
 								if (localKit.hasItem()) {
@@ -228,16 +228,16 @@ public class WarpHandler {
 								WarpHandler.defaultItens(localPlayer, true);
 								localPlayer.playSound(localPlayer.getLocation(), Sound.LEVEL_UP, 1.5f, 1.5f);
 								localPlayer.sendMessage(
-										"§2Voc\u00ea selecionou o kit §f" + localKit.getName().toUpperCase());
-								final TitleAPI title = new TitleAPI("§e§lKIT " + localKit.getName().toUpperCase(),
-										"§eSelecionado!");
+										"ï¿½2Voc\u00ea selecionou o kit ï¿½f" + localKit.getName().toUpperCase());
+								final TitleAPI title = new TitleAPI("ï¿½eï¿½lKIT " + localKit.getName().toUpperCase(),
+										"ï¿½eSelecionado!");
 								title.sendToPlayer(localPlayer);
 								localGamer.setWarp("Arena");
 								break;
 							}
 						}
 					}
-				} else if (localInventoryName.equalsIgnoreCase("§7Menu de Warps") && localClickedItem != null) {
+				} else if (localInventoryName.equalsIgnoreCase("ï¿½7Menu de Warps") && localClickedItem != null) {
 					localInventoryClickEvent.setCancelled(true);
 					if (localClickedItem.getType() == Material.GLASS) {
 						localPlayer.performCommand("warp fps");
@@ -254,13 +254,13 @@ public class WarpHandler {
 
 		public static void setItensToPlayer(final Player playerToSet) {
 			WarpHandler.removeKit(playerToSet);
-			if (Handler.getManager().getWarps().hasWarp("spawn")) {
-				playerToSet.teleport(Handler.getManager().getWarps().getLocation("spawn"));
+			if (WeavenPvP.getManager().getWarps().hasWarp("spawn")) {
+				playerToSet.teleport(WeavenPvP.getManager().getWarps().getLocation("spawn"));
 			} else {
 				playerToSet.teleport(playerToSet.getWorld().getSpawnLocation());
 			}
 			CooldownHandler.removeCooldown(playerToSet);
-			final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(playerToSet.getUniqueId());
+			final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(playerToSet.getUniqueId());
 			localGamer.setWarp("Spawn");
 			playerToSet.setFireTicks(0);
 			playerToSet.setGameMode(GameMode.SURVIVAL);
@@ -271,19 +271,19 @@ public class WarpHandler {
 			for (final PotionEffect localPotionEffect : playerToSet.getActivePotionEffects()) {
 				playerToSet.removePotionEffect(localPotionEffect.getType());
 			}
-			final ItemStack chestItemStack = new ItemBuilder().name("§eSeletor de Kits §7(Clique para utilizar)")
+			final ItemStack chestItemStack = new ItemBuilder().name("ï¿½eSeletor de Kits ï¿½7(Clique para utilizar)")
 					.type(Material.CHEST).build();
-			final ItemStack compassItemStack = new ItemBuilder().name("§eSeletor de Warps §7(Clique para utilizar)")
+			final ItemStack compassItemStack = new ItemBuilder().name("ï¿½eSeletor de Warps ï¿½7(Clique para utilizar)")
 					.type(Material.PAPER).build();
-			final ItemStack diamondItemStack = new ItemBuilder().name("§eStatus §7(Clique para utilizar)")
+			final ItemStack diamondItemStack = new ItemBuilder().name("ï¿½eStatus ï¿½7(Clique para utilizar)")
 					.type(Material.GOLD_INGOT).build();
 			playerToSet.getInventory().setItem(0, chestItemStack);
 			playerToSet.getInventory().setItem(1, compassItemStack);
 			playerToSet.getInventory().setItem(8, diamondItemStack);
 			playerToSet.getInventory().setHeldItemSlot(0);
 			playerToSet.updateInventory();
-			Handler.getManager().getProtectionManager().setProtected(playerToSet, true);
-			playerToSet.sendMessage("§3§lPROTECTION§f Voc\u00ea §b§lRECEBEU§f sua prote\u00e7\u00e3o de spawn.");
+			WeavenPvP.getManager().getProtectionManager().setProtected(playerToSet, true);
+			playerToSet.sendMessage("ï¿½3ï¿½lPROTECTIONï¿½f Voc\u00ea ï¿½bï¿½lRECEBEUï¿½f sua prote\u00e7\u00e3o de spawn.");
 		}
 
 		public static int getInWarp(final String warpName) {
@@ -291,7 +291,7 @@ public class WarpHandler {
 			Player[] onlinePlayers;
 			for (int length = (onlinePlayers = Bukkit.getOnlinePlayers()).length, i = 0; i < length; ++i) {
 				final Player p = onlinePlayers[i];
-				final Gamer gamer = Handler.getManager().getGamerManager().getGamer(p.getUniqueId());
+				final Gamer gamer = WeavenPvP.getManager().getGamerManager().getGamer(p.getUniqueId());
 				if (gamer.getWarp().equalsIgnoreCase(warpName)) {
 					++integer;
 				}
@@ -301,16 +301,16 @@ public class WarpHandler {
 
 		public static void inventoryOfWarps(final Player playerToOpen) {
 			final Inventory localInventory = Bukkit.createInventory((InventoryHolder) playerToOpen, 9,
-					"§7Menu de Warps");
-			final ItemStack glassItemStack = new ItemBuilder().name("§e§lFPS")
-					.lore("", "§f" + getInWarp("Fps") + "§2 jogando agora", "").type(Material.GLASS).build();
-			final ItemStack blazeItemStack = new ItemBuilder().name("§e§l1v1")
-					.lore("", "§f" + getInWarp("1v1") + "§2 jogando agora", "").type(Material.BLAZE_ROD).build();
-			final ItemStack lavaItemStack = new ItemBuilder().name("§e§lLava Challenge")
-					.lore("", "§f" + getInWarp("Challenge") + "§2 jogando agora", "").type(Material.LAVA_BUCKET)
+					"ï¿½7Menu de Warps");
+			final ItemStack glassItemStack = new ItemBuilder().name("ï¿½eï¿½lFPS")
+					.lore("", "ï¿½f" + getInWarp("Fps") + "ï¿½2 jogando agora", "").type(Material.GLASS).build();
+			final ItemStack blazeItemStack = new ItemBuilder().name("ï¿½eï¿½l1v1")
+					.lore("", "ï¿½f" + getInWarp("1v1") + "ï¿½2 jogando agora", "").type(Material.BLAZE_ROD).build();
+			final ItemStack lavaItemStack = new ItemBuilder().name("ï¿½eï¿½lLava Challenge")
+					.lore("", "ï¿½f" + getInWarp("Challenge") + "ï¿½2 jogando agora", "").type(Material.LAVA_BUCKET)
 					.build();
-			final ItemStack cookietemStack = new ItemBuilder().name("§e§lRei da Mesa")
-					.lore("", "§f" + getInWarp("Rdm") + "§2 jogando agora", "").type(Material.COOKIE).build();
+			final ItemStack cookietemStack = new ItemBuilder().name("ï¿½eï¿½lRei da Mesa")
+					.lore("", "ï¿½f" + getInWarp("Rdm") + "ï¿½2 jogando agora", "").type(Material.COOKIE).build();
 			localInventory.setItem(0, glassItemStack);
 			localInventory.setItem(1, blazeItemStack);
 			localInventory.setItem(2, lavaItemStack);
@@ -320,7 +320,7 @@ public class WarpHandler {
 
 		public static void firstInventoryOfKits(final Player playerToOpen) {
 			final Inventory localInventory = Bukkit.createInventory((InventoryHolder) playerToOpen, 54,
-					"§7Selecione seu kit (1)");
+					"ï¿½7Selecione seu kit (1)");
 			final LinkedList<Integer> linkedListOfInteger = new LinkedList<Integer>();
 			for (int i = 11; i < 17; ++i) {
 				linkedListOfInteger.add(i);
@@ -334,7 +334,7 @@ public class WarpHandler {
 			for (int i = 38; i < 44; ++i) {
 				linkedListOfInteger.add(i);
 			}
-			final LinkedList<Kit> linkedListOfKit = Handler.getManager().getKitManager().getAllKits();
+			final LinkedList<Kit> linkedListOfKit = WeavenPvP.getManager().getKitManager().getAllKits();
 			final LinkedList<Kit> linkedLitOfKitToSave = new LinkedList<Kit>();
 			int integerOfMaxSize = 0;
 			for (final Kit kitOfSession : linkedListOfKit) {
@@ -357,11 +357,11 @@ public class WarpHandler {
 			}
 			Spawn.mapOfLinkedList.put(playerToOpen.getUniqueId(), linkedLitOfKitToSave);
 			final boolean nextPage = linkedLitOfKitToSave.size() == 0;
-			final ItemStack chestItemStack = new ItemBuilder().name("§7Seus kits (in\u00edcio)").type(Material.CHEST)
+			final ItemStack chestItemStack = new ItemBuilder().name("ï¿½7Seus kits (in\u00edcio)").type(Material.CHEST)
 					.build();
-			final ItemStack greenSackItemStack = new ItemBuilder().name(nextPage ? "§cDescer" : "§aDescer")
+			final ItemStack greenSackItemStack = new ItemBuilder().name(nextPage ? "ï¿½cDescer" : "ï¿½aDescer")
 					.type(Material.INK_SACK).data(nextPage ? 1 : 10).build();
-			final ItemStack redSackItemStack = new ItemBuilder().name("§cSubir").type(Material.INK_SACK).data(1)
+			final ItemStack redSackItemStack = new ItemBuilder().name("ï¿½cSubir").type(Material.INK_SACK).data(1)
 					.build();
 			localInventory.setItem(18, chestItemStack);
 			localInventory.setItem(49, redSackItemStack);
@@ -371,7 +371,7 @@ public class WarpHandler {
 
 		public static void secondInventoryOfKits(final Player playerToOpen) {
 			final Inventory localInventory = Bukkit.createInventory((InventoryHolder) playerToOpen, 54,
-					"§7Selecione seu kit (2)");
+					"ï¿½7Selecione seu kit (2)");
 			final LinkedList<Integer> linkedListOfInteger = new LinkedList<Integer>();
 			for (int i = 11; i < 17; ++i) {
 				linkedListOfInteger.add(i);
@@ -407,11 +407,11 @@ public class WarpHandler {
 				}
 			}
 			Spawn.mapOfLinkedList.put(playerToOpen.getUniqueId(), linkedLitOfKitToSave);
-			final ItemStack chestItemStack = new ItemBuilder().name("§7Seus kits (in\u00edcio)").type(Material.CHEST)
+			final ItemStack chestItemStack = new ItemBuilder().name("ï¿½7Seus kits (in\u00edcio)").type(Material.CHEST)
 					.build();
-			final ItemStack redSackGrayItemStack = new ItemBuilder().name("§cDescer").type(Material.INK_SACK).data(1)
+			final ItemStack redSackGrayItemStack = new ItemBuilder().name("ï¿½cDescer").type(Material.INK_SACK).data(1)
 					.build();
-			final ItemStack greenSackGrayItemStack = new ItemBuilder().name("§aSubir").type(Material.INK_SACK).data(10)
+			final ItemStack greenSackGrayItemStack = new ItemBuilder().name("ï¿½aSubir").type(Material.INK_SACK).data(10)
 					.build();
 			localInventory.setItem(18, chestItemStack);
 			localInventory.setItem(49, greenSackGrayItemStack);

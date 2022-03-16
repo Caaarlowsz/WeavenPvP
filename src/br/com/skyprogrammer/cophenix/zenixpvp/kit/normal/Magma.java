@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
 import br.com.weaven.core.bukkit.event.update.UpdateEvent;
@@ -38,7 +38,7 @@ public class Magma extends Kit {
 				&& localEntityDamageByEntityEvent.getDamager() instanceof Player) {
 			final Player localDamaged = (Player) localEntityDamageByEntityEvent.getEntity();
 			final Player localDamager = (Player) localEntityDamageByEntityEvent.getDamager();
-			final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localDamager.getUniqueId());
+			final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localDamager.getUniqueId());
 			if (localGamer.getKit() == this) {
 				final int integerOfChance = new Random().nextInt(100);
 				if (integerOfChance > 0 && integerOfChance < 31) {
@@ -53,7 +53,7 @@ public class Magma extends Kit {
 		Player[] onlinePlayers;
 		for (int length = (onlinePlayers = Bukkit.getOnlinePlayers()).length, i = 0; i < length; ++i) {
 			final Player localOnlinePlayers = onlinePlayers[i];
-			final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localOnlinePlayers.getUniqueId());
+			final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localOnlinePlayers.getUniqueId());
 			if (localGamer.getKit() == this) {
 				final Location localLocation = localOnlinePlayers.getLocation().clone().add(0.0, -1.0, 0.0).add(0.0,
 						1.0, 0.0);

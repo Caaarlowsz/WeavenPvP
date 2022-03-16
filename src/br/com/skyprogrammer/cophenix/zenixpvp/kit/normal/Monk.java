@@ -8,7 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CooldownHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
@@ -32,7 +32,7 @@ public class Monk extends Kit {
 	@EventHandler
 	public void onPlayerInteractMonk(final PlayerInteractEntityEvent localPlayerInteractEntityEvent) {
 		final Player localPlayer = localPlayerInteractEntityEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localPlayerInteractEntityEvent.getRightClicked() instanceof Player) {
 			final Player localRightClickedPlayer = (Player) localPlayerInteractEntityEvent.getRightClicked();
 			if (localPlayer.getItemInHand().getType() == Material.BLAZE_ROD && localGamer.getKit() == this) {
@@ -48,10 +48,10 @@ public class Monk extends Kit {
 				final ItemStack newItemInHand = localRightClickedPlayer.getItemInHand();
 				localRightClickedPlayer.setItemInHand(randomItemStackOfInventory);
 				localRightClickedPlayer.getInventory().setItem(integerWhitRandomValue, newItemInHand);
-				localPlayer.sendMessage("§2§l" + this.getName() + "§2 Voc\u00ea §fMONKOU§2 o player §f"
+				localPlayer.sendMessage("ï¿½2ï¿½l" + this.getName() + "ï¿½2 Voc\u00ea ï¿½fMONKOUï¿½2 o player ï¿½f"
 						+ localRightClickedPlayer.getName());
-				localRightClickedPlayer.sendMessage("§c§l" + this.getName() + "§c O player §f" + localPlayer.getName()
-						+ "§c acabou de §fBAGUN\u00c7AR§c seu §fINVENTARIO!");
+				localRightClickedPlayer.sendMessage("ï¿½cï¿½l" + this.getName() + "ï¿½c O player ï¿½f" + localPlayer.getName()
+						+ "ï¿½c acabou de ï¿½fBAGUN\u00c7ARï¿½c seu ï¿½fINVENTARIO!");
 			}
 		}
 	}

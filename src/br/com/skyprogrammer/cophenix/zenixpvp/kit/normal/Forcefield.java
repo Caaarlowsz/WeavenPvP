@@ -10,7 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.Plugin;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CooldownHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
@@ -39,7 +39,7 @@ public class Forcefield extends Kit {
 	@EventHandler
 	public void onInteractForcefield(final PlayerInteractEvent localPlayerInteractEvent) {
 		final Player localPlayer = localPlayerInteractEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.getKit() == this) {
 			if (localPlayer.getItemInHand().getType() != this.getMaterial()) {
 				if (this.arrayListOfForcefield.contains(localPlayer)) {
@@ -53,8 +53,8 @@ public class Forcefield extends Kit {
 							if (!(entities instanceof Player)) {
 								continue;
 							}
-							((Player) entities).sendMessage("§c§l" + this.getName()
-									+ "§c Voc\u00ea est\u00e1 no §fFORCEFIELD§c do player §f" + localPlayer.getName());
+							((Player) entities).sendMessage("ï¿½cï¿½l" + this.getName()
+									+ "ï¿½c Voc\u00ea est\u00e1 no ï¿½fFORCEFIELDï¿½c do player ï¿½f" + localPlayer.getName());
 						}
 					}
 				}
@@ -65,9 +65,9 @@ public class Forcefield extends Kit {
 				}
 				CooldownHandler.addCooldown(localPlayer, this.getCooldown());
 				this.arrayListOfForcefield.add(localPlayer);
-				localPlayer.sendMessage("§2§l" + this.getName()
-						+ "§2 Voc\u00ea §fATIVOU§2 seu §fFORCEFIELD!§2 Bata com §fESPADA§2 para dar mais §fDANO!");
-				Handler.getInstance().getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Handler.getInstance(),
+				localPlayer.sendMessage("ï¿½2ï¿½l" + this.getName()
+						+ "ï¿½2 Voc\u00ea ï¿½fATIVOUï¿½2 seu ï¿½fFORCEFIELD!ï¿½2 Bata com ï¿½fESPADAï¿½2 para dar mais ï¿½fDANO!");
+				WeavenPvP.getInstance().getServer().getScheduler().scheduleSyncDelayedTask((Plugin) WeavenPvP.getInstance(),
 						() -> this.removeAbilityIfHas(localPlayer), 300L);
 			}
 		}

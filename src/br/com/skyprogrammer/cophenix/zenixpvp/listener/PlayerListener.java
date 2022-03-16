@@ -19,7 +19,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.api.title.TitleAPI;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.ListenerHandler;
@@ -35,7 +35,7 @@ public class PlayerListener extends ListenerHandler {
 		executor = Executors.newSingleThreadExecutor(new ThreadFactoryBuilder().setNameFormat("Async Thread").build());
 	}
 
-	public PlayerListener(final Handler instanceOfHandler) {
+	public PlayerListener(final WeavenPvP instanceOfHandler) {
 		super(instanceOfHandler);
 	}
 
@@ -44,29 +44,29 @@ public class PlayerListener extends ListenerHandler {
 		final UUID localUniqueId = localAsyncPlayerPreLoginEvent.getUniqueId();
 		final String localName = localAsyncPlayerPreLoginEvent.getName();
 		final Gamer localGamer = new Gamer(localUniqueId, localName).setIsPremiumAccount(false);
-		if (!Handler.getManager().getAccounts().isRegistered(localGamer.getName().toLowerCase())) {
-			Handler.getManager().getAccounts().register(localGamer.getName().toLowerCase());
+		if (!WeavenPvP.getManager().getAccounts().isRegistered(localGamer.getName().toLowerCase())) {
+			WeavenPvP.getManager().getAccounts().register(localGamer.getName().toLowerCase());
 		}
 		localGamer.update();
-		Handler.getManager().getGamerManager().addGamer(localUniqueId, localGamer);
+		WeavenPvP.getManager().getGamerManager().addGamer(localUniqueId, localGamer);
 	}
 
 	@EventHandler
 	public void onPlayerJoin(final PlayerJoinEvent localPlayerJoinEvent) {
 		localPlayerJoinEvent.setJoinMessage((String) null);
 		final Player localPlayer = localPlayerJoinEvent.getPlayer();
-		Handler.getManager().getScoreboardManager().createScoreboardToPlayer(localPlayer);
-		if (Handler.getManager().getWarps().hasWarp("spawn")) {
-			localPlayer.teleport(Handler.getManager().getWarps().getLocation("spawn"));
+		WeavenPvP.getManager().getScoreboardManager().createScoreboardToPlayer(localPlayer);
+		if (WeavenPvP.getManager().getWarps().hasWarp("spawn")) {
+			localPlayer.teleport(WeavenPvP.getManager().getWarps().getLocation("spawn"));
 		} else {
 			localPlayer.teleport(localPlayer.getWorld().getSpawnLocation());
 		}
 		WarpHandler.Spawn.setItensToPlayer(localPlayer);
-		final TitleAPI localTitleAPI = new TitleAPI("§b§lCELTZ§3§lP§f§lVP", "§fBatalhe contra outros jogadores!");
+		final TitleAPI localTitleAPI = new TitleAPI("ï¿½bï¿½lCELTZï¿½3ï¿½lPï¿½fï¿½lVP", "ï¿½fBatalhe contra outros jogadores!");
 		localTitleAPI.sendToPlayer(localPlayer);
 		localPlayer.sendMessage(" ");
-		localPlayer.sendMessage("§b§lCELTZ§3§lP§f§lVP");
-		localPlayer.sendMessage("§fBatalhe contra outros jogadores!");
+		localPlayer.sendMessage("ï¿½bï¿½lCELTZï¿½3ï¿½lPï¿½fï¿½lVP");
+		localPlayer.sendMessage("ï¿½fBatalhe contra outros jogadores!");
 		localPlayer.sendMessage(" ");
 		Bukkit.getScheduler().runTaskLater((Plugin) this.getHandler(), () -> X1WarpListener.update1v1Vanish(), 10L);
 	}
@@ -78,37 +78,37 @@ public class PlayerListener extends ListenerHandler {
 		if (X1WarpListener.firstMatch == localPlayer.getUniqueId()) {
 			X1WarpListener.firstMatch = null;
 		}
-		Handler.getManager().getGamerManager().removeGamer(localPlayer.getUniqueId());
+		WeavenPvP.getManager().getGamerManager().removeGamer(localPlayer.getUniqueId());
 	}
 
 	@EventHandler
 	public void onRespawn(final PlayerRespawnEvent event) {
 		final Player player = event.getPlayer();
-		final Gamer gamer = Handler.getManager().getGamerManager().getGamer(player.getUniqueId());
+		final Gamer gamer = WeavenPvP.getManager().getGamerManager().getGamer(player.getUniqueId());
 		new BukkitRunnable() {
 			public void run() {
 				if (gamer.getWarp().equalsIgnoreCase("1v1")) {
 					player.performCommand("warp 1v1");
-					player.teleport(Handler.getManager().getWarps().getLocation("1v1"));
+					player.teleport(WeavenPvP.getManager().getWarps().getLocation("1v1"));
 				} else {
 					WarpHandler.Spawn.setItensToPlayer(player);
 				}
 			}
-		}.runTask((Plugin) Handler.getPlugin( Handler.class));
+		}.runTask((Plugin) WeavenPvP.getPlugin( WeavenPvP.class));
 	}
 
 	public void checkKillStreak(final Player checker, final int i) {
 		final String value = String.valueOf(i);
 		if ((value.endsWith("0") || value.endsWith("5")) && i >= 10) {
 			Bukkit.broadcastMessage(
-					"§4§lKILLSTREAK §1§l" + checker.getName() + " §fconseguiu um §6§lKILLSTREAK DE " + i);
+					"ï¿½4ï¿½lKILLSTREAK ï¿½1ï¿½l" + checker.getName() + " ï¿½fconseguiu um ï¿½6ï¿½lKILLSTREAK DE " + i);
 		}
 	}
 
 	public void checkLostKillStreak(final Player killer, final Player loster, final int i) {
 		if (i >= 10) {
-			Bukkit.broadcastMessage("§4§lKILLSTREAK §1§l" + loster.getName() + "§f perdeu seu §6§lKILLSTREAK DE " + i
-					+ " PARA §c§l" + killer.getName());
+			Bukkit.broadcastMessage("ï¿½4ï¿½lKILLSTREAK ï¿½1ï¿½l" + loster.getName() + "ï¿½f perdeu seu ï¿½6ï¿½lKILLSTREAK DE " + i
+					+ " PARA ï¿½cï¿½l" + killer.getName());
 		}
 	}
 
@@ -117,11 +117,11 @@ public class PlayerListener extends ListenerHandler {
 		event.setDeathMessage((String) null);
 		if (event.getEntity() instanceof Player) {
 			final Player player = event.getEntity();
-			final Gamer gamer = Handler.getManager().getGamerManager().getGamer(player.getUniqueId());
+			final Gamer gamer = WeavenPvP.getManager().getGamerManager().getGamer(player.getUniqueId());
 			player.getWorld().strikeLightningEffect(player.getLocation());
 			if (event.getEntity().getKiller() instanceof Player) {
 				final Player killer = event.getEntity().getKiller();
-				final Gamer gamerKiller = Handler.getManager().getGamerManager().getGamer(killer.getUniqueId());
+				final Gamer gamerKiller = WeavenPvP.getManager().getGamerManager().getGamer(killer.getUniqueId());
 				if (gamerKiller.getWarp().equalsIgnoreCase("1v1") && X1WarpListener.playerfigh.containsKey(player)) {
 					event.getDrops().clear();
 					X1WarpListener.fighting.remove(killer);
@@ -131,7 +131,7 @@ public class PlayerListener extends ListenerHandler {
 					final int sopsK = X1WarpListener.itemsInInventory((Inventory) killer.getInventory(),
 							new Material[] { Material.MUSHROOM_SOUP });
 					X1WarpListener.defaultItens(killer);
-					killer.teleport(Handler.getManager().getWarps().getLocation("1v1"));
+					killer.teleport(WeavenPvP.getManager().getWarps().getLocation("1v1"));
 					if (X1WarpListener.batalhando.containsKey(player)) {
 						X1WarpListener.batalhando.remove(player);
 					}
@@ -140,9 +140,9 @@ public class PlayerListener extends ListenerHandler {
 					}
 					Vanish.updateVanished(killer);
 					Vanish.updateVanished(player);
-					killer.sendMessage("§cVoce venceu o 1v1 contra " + player.getName() + " com "
+					killer.sendMessage("ï¿½cVoce venceu o 1v1 contra " + player.getName() + " com "
 							+ X1WarpListener.cora(killer) + " cora\u00e7oes e " + sopsK + " sopas restantes");
-					player.sendMessage("§c" + killer.getName() + " venceu o 1v1 com " + X1WarpListener.cora(killer)
+					player.sendMessage("ï¿½c" + killer.getName() + " venceu o 1v1 com " + X1WarpListener.cora(killer)
 							+ " cora\u00e7oes e " + sopsK + " sopas restantes");
 					killer.setHealth(20.0);
 				}
@@ -156,17 +156,17 @@ public class PlayerListener extends ListenerHandler {
 					accKiller.addMoney(80);
 					gamerKiller.setKills(gamerKiller.getKills() + 1);
 					gamerKiller.setKillStreak(gamerKiller.getKillStreak() + 1);
-					killer.sendMessage("§6§lKILL§f Voc\u00ea matou §e§l" + player.getName() + "§f!");
-					killer.sendMessage("§9§lXP§f Voc\u00ea recebeu §9§l17XP§f!");
-					killer.sendMessage("§6§lCOINS§f Voc\u00ea recebeu §b§l80COINS§f!");
-					player.sendMessage("§4§lDEATH§f Voc\u00ea §c§lMORREU§f para §c" + killer.getName());
+					killer.sendMessage("ï¿½6ï¿½lKILLï¿½f Voc\u00ea matou ï¿½eï¿½l" + player.getName() + "ï¿½f!");
+					killer.sendMessage("ï¿½9ï¿½lXPï¿½f Voc\u00ea recebeu ï¿½9ï¿½l17XPï¿½f!");
+					killer.sendMessage("ï¿½6ï¿½lCOINSï¿½f Voc\u00ea recebeu ï¿½bï¿½l80COINSï¿½f!");
+					player.sendMessage("ï¿½4ï¿½lDEATHï¿½f Voc\u00ea ï¿½cï¿½lMORREUï¿½f para ï¿½c" + killer.getName());
 					this.checkKillStreak(killer, gamerKiller.getKillStreak());
 					accKiller.update();
 					gamerKiller.updateData();
 					return;
 				});
 			}
-			Bukkit.getScheduler().runTaskLater((Plugin) Handler.getInstance(), () -> player.spigot().respawn(), 1L);
+			Bukkit.getScheduler().runTaskLater((Plugin) WeavenPvP.getInstance(), () -> player.spigot().respawn(), 1L);
 		}
 	}
 }

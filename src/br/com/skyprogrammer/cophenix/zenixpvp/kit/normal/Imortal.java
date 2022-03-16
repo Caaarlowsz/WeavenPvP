@@ -9,7 +9,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.Plugin;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CooldownHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
@@ -38,7 +38,7 @@ public class Imortal extends Kit {
 	@EventHandler
 	public void onInteractImortal(final PlayerInteractEvent localPlayerInteractEvent) {
 		final Player localPlayer = localPlayerInteractEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.getKit() == this && localPlayer.getItemInHand().getType() == this.getMaterial()) {
 			if (CooldownHandler.onCooldown(localPlayer)) {
 				CooldownHandler.sendCooldownMessage(localPlayer, this.getName());
@@ -46,8 +46,8 @@ public class Imortal extends Kit {
 			}
 			CooldownHandler.addCooldown(localPlayer, this.getCooldown());
 			this.arrayListOfImortal.add(localPlayer);
-			localPlayer.sendMessage("§2§l" + this.getName() + "§2 Voc\u00ea §fATIVOU§2 sua §fIMORTALIDADE!");
-			Handler.getInstance().getServer().getScheduler().scheduleSyncDelayedTask((Plugin) Handler.getInstance(),
+			localPlayer.sendMessage("ï¿½2ï¿½l" + this.getName() + "ï¿½2 Voc\u00ea ï¿½fATIVOUï¿½2 sua ï¿½fIMORTALIDADE!");
+			WeavenPvP.getInstance().getServer().getScheduler().scheduleSyncDelayedTask((Plugin) WeavenPvP.getInstance(),
 					() -> this.removeAbilityIfHas(localPlayer), 200L);
 		}
 	}
@@ -56,7 +56,7 @@ public class Imortal extends Kit {
 	public void onDamageImortal(final EntityDamageEvent localEntityDamageEvent) {
 		if (localEntityDamageEvent.getEntity() instanceof Player) {
 			final Player localPlayer = (Player) localEntityDamageEvent.getEntity();
-			final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+			final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 			if (localGamer.getKit() == this && this.arrayListOfImortal.contains(localPlayer)) {
 				localEntityDamageEvent.setCancelled(true);
 			}

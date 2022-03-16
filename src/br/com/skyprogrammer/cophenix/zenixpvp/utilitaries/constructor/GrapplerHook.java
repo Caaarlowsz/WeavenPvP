@@ -11,7 +11,7 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import net.minecraft.server.v1_7_R4.EntityFishingHook;
 import net.minecraft.server.v1_7_R4.EntityHuman;
 import net.minecraft.server.v1_7_R4.EntitySnowball;
@@ -27,7 +27,7 @@ public class GrapplerHook extends EntityFishingHook {
 	public boolean lastControllerDead;
 	public boolean isHooked;
 
-	public void Grappler(final Handler instanceOfHandler) {
+	public void Grappler(final WeavenPvP instanceOfHandler) {
 	}
 
 	public GrapplerHook(final World world, final EntityHuman entityhuman) {

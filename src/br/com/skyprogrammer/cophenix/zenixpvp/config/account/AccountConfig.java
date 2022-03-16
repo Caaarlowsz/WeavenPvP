@@ -7,14 +7,14 @@ import java.util.UUID;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.enums.Tag;
 
 public class AccountConfig {
 	private static FileConfiguration fileConfiguration;
 	private static File file;
 
-	public AccountConfig(final Handler handlerInstance, final String exactlyNameOfTheFile) {
+	public AccountConfig(final WeavenPvP handlerInstance, final String exactlyNameOfTheFile) {
 		if (!handlerInstance.getDataFolder().exists()) {
 			handlerInstance.getDataFolder().mkdir();
 		}

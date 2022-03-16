@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CooldownHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
@@ -30,7 +30,7 @@ public class Flash extends Kit {
 	@EventHandler
 	public void onPlayerInteract(final PlayerInteractEvent localPlayerInteractEvent) {
 		final Player localPlayer = localPlayerInteractEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.getKit() == this && localPlayer.getItemInHand().getType() == this.getMaterial()) {
 			localPlayerInteractEvent.setCancelled(true);
 			if (CooldownHandler.onCooldown(localPlayer)) {
@@ -39,12 +39,12 @@ public class Flash extends Kit {
 			}
 			final Block localTargetBlock = localPlayer.getTargetBlock(null, 200).getRelative(BlockFace.UP);
 			if (localTargetBlock.getType() == null) {
-				localPlayer.sendMessage("§c§l" + this.getName() + "§c O bloco escolhido nao pode ser §fNULO!");
+				localPlayer.sendMessage("ï¿½cï¿½l" + this.getName() + "ï¿½c O bloco escolhido nao pode ser ï¿½fNULO!");
 				return;
 			}
 			CooldownHandler.addCooldown(localPlayer, this.getCooldown());
 			localPlayer.teleport(localTargetBlock.getLocation());
-			localPlayer.sendMessage("§2§l" + this.getName() + "§2 Voc\u00ea foi §fTELEPORTADO!");
+			localPlayer.sendMessage("ï¿½2ï¿½l" + this.getName() + "ï¿½2 Voc\u00ea foi ï¿½fTELEPORTADO!");
 		}
 	}
 }

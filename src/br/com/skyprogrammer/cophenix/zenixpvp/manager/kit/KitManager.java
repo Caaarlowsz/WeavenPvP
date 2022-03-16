@@ -6,15 +6,15 @@ import java.util.LinkedList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
 import br.com.skyprogrammer.cophenix.zenixpvp.utilitaries.getter.ClassGetter;
 
 public class KitManager {
 	private LinkedList<Kit> linkedListOfKits;
-	private Handler instanceOfHandler;
+	private WeavenPvP instanceOfHandler;
 
-	public KitManager(final Handler instanceOfHandler) {
+	public KitManager(final WeavenPvP instanceOfHandler) {
 		this.instanceOfHandler = instanceOfHandler;
 		this.linkedListOfKits = new LinkedList<Kit>();
 	}

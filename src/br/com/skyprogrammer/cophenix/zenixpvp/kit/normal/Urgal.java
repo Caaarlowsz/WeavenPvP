@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CooldownHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
@@ -30,7 +30,7 @@ public class Urgal extends Kit {
 	@EventHandler
 	public void onThor(final PlayerInteractEvent localPlayerInteractEvent) {
 		final Player localPlayer = localPlayerInteractEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.getKit() == this && localPlayer.getItemInHand().getType() == this.getMaterial()) {
 			localPlayerInteractEvent.setCancelled(true);
 			if (CooldownHandler.onCooldown(localPlayer)) {
@@ -39,7 +39,7 @@ public class Urgal extends Kit {
 			}
 			CooldownHandler.addCooldown(localPlayer, 60);
 			localPlayer.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 400, 0));
-			localPlayer.sendMessage("§2§l" + this.getName() + "§2 Voc\u00ea recebeu §fFOR\u00c7A I!");
+			localPlayer.sendMessage("ï¿½2ï¿½l" + this.getName() + "ï¿½2 Voc\u00ea recebeu ï¿½fFOR\u00c7A I!");
 		}
 	}
 }

@@ -9,7 +9,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
 
@@ -34,7 +34,7 @@ public class Reaper extends Kit {
 				&& localEntityDamageByEntityEvent.getDamager() instanceof Player) {
 			final Player localDamaged = (Player) localEntityDamageByEntityEvent.getEntity();
 			final Player localDamager = (Player) localEntityDamageByEntityEvent.getDamager();
-			final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localDamager.getUniqueId());
+			final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localDamager.getUniqueId());
 			if (localGamer.getKit() == this) {
 				final int integerOfChance = new Random().nextInt(100);
 				if (integerOfChance > 0 && integerOfChance < 31) {

@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CommandHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.scoreboard.ScoreboardAPI;
@@ -21,16 +21,16 @@ public class ScoreboardCommand extends CommandHandler {
 			return true;
 		}
 		final Player localPlayer = this.getPlayerInstance(commandSender);
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.getScoreboardHandler() == null) {
-			Handler.getManager().getScoreboardManager().createScoreboardToPlayer(localPlayer);
-			localPlayer.sendMessage("§2Voc\u00ea agora est\u00e1 com sua scoreboard §fATIVADA");
+			WeavenPvP.getManager().getScoreboardManager().createScoreboardToPlayer(localPlayer);
+			localPlayer.sendMessage("ï¿½2Voc\u00ea agora est\u00e1 com sua scoreboard ï¿½fATIVADA");
 			return true;
 		}
 		localGamer.setScoreboardHandler(null);
 		final Scoreboard bukkitNewScoreboard = ScoreboardAPI.getNewScoreboard();
 		localPlayer.setScoreboard(bukkitNewScoreboard);
-		localPlayer.sendMessage("§2Voc\u00ea agora est\u00e1 com sua scoreboard §fDESATIVADA");
+		localPlayer.sendMessage("ï¿½2Voc\u00ea agora est\u00e1 com sua scoreboard ï¿½fDESATIVADA");
 		return true;
 	}
 }

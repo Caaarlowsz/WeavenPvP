@@ -2,7 +2,7 @@ package br.com.skyprogrammer.cophenix.zenixpvp.account.gamer;
 
 import java.util.UUID;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.None;
 import br.com.skyprogrammer.cophenix.zenixpvp.scoreboard.constructor.ScoreboardHandler;
@@ -44,59 +44,59 @@ public class Gamer {
 
 	public Gamer update() {
 		if (this.isPremiumAccount) {
-			this.gamerKills = Handler.getManager().getAccounts().getKills(this.gamerUniqueId);
-			this.gamerDeaths = Handler.getManager().getAccounts().getDeaths(this.gamerUniqueId);
-			this.gamerKillStreak = Handler.getManager().getAccounts().getStreak(this.gamerUniqueId);
-			this.gamerSimpleBoxes = Handler.getManager().getAccounts().getSimpleBox(this.gamerUniqueId);
-			this.gamerIntermediaryBoxes = Handler.getManager().getAccounts().getIntermediaryBox(this.gamerUniqueId);
-			this.gamerAdvancedBoxes = Handler.getManager().getAccounts().getAdvancedBox(this.gamerUniqueId);
+			this.gamerKills = WeavenPvP.getManager().getAccounts().getKills(this.gamerUniqueId);
+			this.gamerDeaths = WeavenPvP.getManager().getAccounts().getDeaths(this.gamerUniqueId);
+			this.gamerKillStreak = WeavenPvP.getManager().getAccounts().getStreak(this.gamerUniqueId);
+			this.gamerSimpleBoxes = WeavenPvP.getManager().getAccounts().getSimpleBox(this.gamerUniqueId);
+			this.gamerIntermediaryBoxes = WeavenPvP.getManager().getAccounts().getIntermediaryBox(this.gamerUniqueId);
+			this.gamerAdvancedBoxes = WeavenPvP.getManager().getAccounts().getAdvancedBox(this.gamerUniqueId);
 		} else {
-			this.gamerKills = Handler.getManager().getAccounts().getKills(this.gamerName);
-			this.gamerDeaths = Handler.getManager().getAccounts().getDeaths(this.gamerName);
-			this.gamerKillStreak = Handler.getManager().getAccounts().getStreak(this.gamerName);
-			this.gamerSimpleBoxes = Handler.getManager().getAccounts().getSimpleBox(this.gamerName);
-			this.gamerIntermediaryBoxes = Handler.getManager().getAccounts().getIntermediaryBox(this.gamerName);
-			this.gamerAdvancedBoxes = Handler.getManager().getAccounts().getAdvancedBox(this.gamerName);
+			this.gamerKills = WeavenPvP.getManager().getAccounts().getKills(this.gamerName);
+			this.gamerDeaths = WeavenPvP.getManager().getAccounts().getDeaths(this.gamerName);
+			this.gamerKillStreak = WeavenPvP.getManager().getAccounts().getStreak(this.gamerName);
+			this.gamerSimpleBoxes = WeavenPvP.getManager().getAccounts().getSimpleBox(this.gamerName);
+			this.gamerIntermediaryBoxes = WeavenPvP.getManager().getAccounts().getIntermediaryBox(this.gamerName);
+			this.gamerAdvancedBoxes = WeavenPvP.getManager().getAccounts().getAdvancedBox(this.gamerName);
 		}
 		return this;
 	}
 
 	public Gamer updateData() {
 		if (this.isPremiumAccount) {
-			Handler.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".NickName",
+			WeavenPvP.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".NickName",
 					(Object) this.gamerName);
-			Handler.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".Kills",
+			WeavenPvP.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".Kills",
 					(Object) this.gamerKills);
-			Handler.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".Deaths",
+			WeavenPvP.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".Deaths",
 					(Object) this.gamerDeaths);
-			Handler.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".KillStreak",
+			WeavenPvP.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".KillStreak",
 					(Object) this.gamerKillStreak);
-			Handler.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".SimpleBox",
+			WeavenPvP.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".SimpleBox",
 					(Object) this.gamerSimpleBoxes);
-			Handler.getManager().getAccounts().getFile().set(
+			WeavenPvP.getManager().getAccounts().getFile().set(
 					"Accounts.Premium." + this.gamerUniqueId + ".IntermediaryBox",
 					(Object) this.gamerIntermediaryBoxes);
-			Handler.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".AdvancedBox",
+			WeavenPvP.getManager().getAccounts().getFile().set("Accounts.Premium." + this.gamerUniqueId + ".AdvancedBox",
 					(Object) this.gamerAdvancedBoxes);
-			Handler.getManager().getAccounts().save();
+			WeavenPvP.getManager().getAccounts().save();
 		} else {
-			Handler.getManager().getAccounts().getFile()
+			WeavenPvP.getManager().getAccounts().getFile()
 					.set("Accounts.Pirate." + this.gamerName.toLowerCase() + ".NickName", (Object) this.gamerName);
-			Handler.getManager().getAccounts().getFile()
+			WeavenPvP.getManager().getAccounts().getFile()
 					.set("Accounts.Pirate." + this.gamerName.toLowerCase() + ".Kills", (Object) this.gamerKills);
-			Handler.getManager().getAccounts().getFile()
+			WeavenPvP.getManager().getAccounts().getFile()
 					.set("Accounts.Pirate." + this.gamerName.toLowerCase() + ".Deaths", (Object) this.gamerDeaths);
-			Handler.getManager().getAccounts().getFile().set(
+			WeavenPvP.getManager().getAccounts().getFile().set(
 					"Accounts.Pirate." + this.gamerName.toLowerCase() + ".KillStreak", (Object) this.gamerKillStreak);
-			Handler.getManager().getAccounts().getFile().set(
+			WeavenPvP.getManager().getAccounts().getFile().set(
 					"Accounts.Pirate." + this.gamerName.toLowerCase() + ".SimpleBox", (Object) this.gamerSimpleBoxes);
-			Handler.getManager().getAccounts().getFile().set(
+			WeavenPvP.getManager().getAccounts().getFile().set(
 					"Accounts.Pirate." + this.gamerName.toLowerCase() + ".IntermediaryBox",
 					(Object) this.gamerIntermediaryBoxes);
-			Handler.getManager().getAccounts().getFile().set(
+			WeavenPvP.getManager().getAccounts().getFile().set(
 					"Accounts.Pirate." + this.gamerName.toLowerCase() + ".AdvancedBox",
 					(Object) this.gamerAdvancedBoxes);
-			Handler.getManager().getAccounts().save();
+			WeavenPvP.getManager().getAccounts().save();
 		}
 		return this;
 	}

@@ -44,7 +44,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.api.admin.AdminMode;
 import br.com.skyprogrammer.cophenix.zenixpvp.api.item.ItemBuilder;
@@ -59,7 +59,7 @@ public class BukkitListener extends ListenerHandler {
 		BukkitListener.localMapTask = new HashMap<UUID, BukkitTask>();
 	}
 
-	public BukkitListener(final Handler instanceOfHandler) {
+	public BukkitListener(final WeavenPvP instanceOfHandler) {
 		super(instanceOfHandler);
 	}
 
@@ -192,17 +192,17 @@ public class BukkitListener extends ListenerHandler {
 						|| event.getClickedBlock().getType() == Material.SIGN_POST)) {
 			final Sign s = (Sign) event.getClickedBlock().getState();
 			final String[] lines = s.getLines();
-			if (lines.length > 0 && lines[0].equals("§3Celtz") && lines.length > 1 && lines[1].equals("§bSopas")
-					&& lines.length > 2 && lines[2].equals("§6§m>-----<") && lines.length > 3 && lines[3].equals(" ")) {
+			if (lines.length > 0 && lines[0].equals("ï¿½3Celtz") && lines.length > 1 && lines[1].equals("ï¿½bSopas")
+					&& lines.length > 2 && lines[2].equals("ï¿½6ï¿½m>-----<") && lines.length > 3 && lines[3].equals(" ")) {
 				event.setCancelled(true);
-				final Inventory inv = Bukkit.createInventory((InventoryHolder) player, 54, "§bSopas");
+				final Inventory inv = Bukkit.createInventory((InventoryHolder) player, 54, "ï¿½bSopas");
 				final ItemStack sopa = new ItemStack(Material.MUSHROOM_SOUP);
 				for (int i = 0; i < 54; ++i) {
 					inv.setItem(i, sopa);
 				}
 				player.openInventory(inv);
-			} else if (lines.length > 0 && lines[0].equals("§3Celtz") && lines.length > 1
-					&& lines[1].equals("§bRecraft") && lines.length > 2 && lines[2].equals("§6§m>-----<")
+			} else if (lines.length > 0 && lines[0].equals("ï¿½3Celtz") && lines.length > 1
+					&& lines[1].equals("ï¿½bRecraft") && lines.length > 2 && lines[2].equals("ï¿½6ï¿½m>-----<")
 					&& lines.length > 3 && lines[3].equals(" ")) {
 				event.setCancelled(true);
 				final ItemStack cogu1 = new ItemStack(Material.BROWN_MUSHROOM, 64);
@@ -212,7 +212,7 @@ public class BukkitListener extends ListenerHandler {
 				player.getInventory().addItem(new ItemStack[] { cogu2 });
 				player.getInventory().addItem(new ItemStack[] { pote });
 				player.updateInventory();
-				player.sendMessage("§6§lRECRAFT§f Voc\u00ea recebeu seu §6§lRECRAFT§f!");
+				player.sendMessage("ï¿½6ï¿½lRECRAFTï¿½f Voc\u00ea recebeu seu ï¿½6ï¿½lRECRAFTï¿½f!");
 			}
 		}
 	}
@@ -255,7 +255,7 @@ public class BukkitListener extends ListenerHandler {
 	@EventHandler
 	public void onPlace(final BlockPlaceEvent localBlockPlaceEvent) {
 		final Player localPlayer = localBlockPlaceEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (!localGamer.isBuildEnabled()) {
 			localBlockPlaceEvent.setCancelled(true);
 		}
@@ -264,7 +264,7 @@ public class BukkitListener extends ListenerHandler {
 	@EventHandler
 	public void onBreak(final BlockBreakEvent localBlockBreakEvent) {
 		final Player localPlayer = localBlockBreakEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (!localGamer.isBuildEnabled()) {
 			localBlockBreakEvent.setCancelled(true);
 		}
@@ -276,7 +276,7 @@ public class BukkitListener extends ListenerHandler {
 		if (BukkitListener.localMapTask.containsKey(localPlayer.getUniqueId())) {
 			BukkitListener.localMapTask.get(localPlayer.getUniqueId()).cancel();
 			BukkitListener.localMapTask.remove(localPlayer.getUniqueId());
-			localPlayer.sendMessage("§cSeu §fTELEPORTE§c foi §fCANCELADO§c pois voce se §fMEXEU§c!");
+			localPlayer.sendMessage("ï¿½cSeu ï¿½fTELEPORTEï¿½c foi ï¿½fCANCELADOï¿½c pois voce se ï¿½fMEXEUï¿½c!");
 		}
 	}
 
@@ -291,13 +291,13 @@ public class BukkitListener extends ListenerHandler {
 				&& (localMessage.startsWith("/spawn") || localMessage.startsWith("/warp"))) {
 			localPlayerCommandPreprocessEvent.setCancelled(true);
 			if (localPlayer.getFallDistance() > 0.0f || !localPlayer.isOnGround()) {
-				localPlayer.sendMessage("§cVoc\u00ea precisa estar §fNO CHAO§c para se §fTELEPORTAR§c!");
+				localPlayer.sendMessage("ï¿½cVoc\u00ea precisa estar ï¿½fNO CHAOï¿½c para se ï¿½fTELEPORTARï¿½c!");
 				return;
 			}
 			if (BukkitListener.localMapTask.containsKey(localPlayer.getUniqueId())) {
 				BukkitListener.localMapTask.get(localPlayer.getUniqueId()).cancel();
 				BukkitListener.localMapTask.remove(localPlayer.getUniqueId());
-				localPlayer.sendMessage("§cVoc\u00ea §fCANCELOU§c o §fTELEPORTE§c!");
+				localPlayer.sendMessage("ï¿½cVoc\u00ea ï¿½fCANCELOUï¿½c o ï¿½fTELEPORTEï¿½c!");
 				return;
 			}
 			BukkitListener.localMapTask.put(localPlayer.getUniqueId(), new BukkitRunnable() {
@@ -330,11 +330,11 @@ public class BukkitListener extends ListenerHandler {
 			}
 		}
 		if (localPlayerToTarget == null) {
-			localPlayer.sendMessage("§eNenhum jogador localizado.");
+			localPlayer.sendMessage("ï¿½eNenhum jogador localizado.");
 			localPlayer.setCompassTarget(localPlayer.getWorld().getSpawnLocation());
 		} else {
 			localPlayer.setCompassTarget(localPlayerToTarget.getLocation());
-			localPlayer.sendMessage("§eBussola apontando para §f" + localPlayerToTarget.getName());
+			localPlayer.sendMessage("ï¿½eBussola apontando para ï¿½f" + localPlayerToTarget.getName());
 		}
 	}
 
@@ -342,7 +342,7 @@ public class BukkitListener extends ListenerHandler {
 	public void onSoup(final PlayerInteractEvent localPlayerInteractEvent) {
 		final Player localPlayer = localPlayerInteractEvent.getPlayer();
 		final Material localMaterial = localPlayer.getItemInHand().getType();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.getWarp().equalsIgnoreCase("Spawn")) {
 			return;
 		}
@@ -366,46 +366,46 @@ public class BukkitListener extends ListenerHandler {
 	@EventHandler
 	public void onItemSpawn(final ItemSpawnEvent localItemSpawnEvent) {
 		final Item localItem = localItemSpawnEvent.getEntity();
-		Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) Handler.getInstance(), () -> localItem.remove(), 100L);
+		Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) WeavenPvP.getInstance(), () -> localItem.remove(), 100L);
 	}
 
 	@EventHandler
 	public void onSignChange(final SignChangeEvent event) {
 		if (event.getLine(0).contains("&")) {
-			event.setLine(0, event.getLine(0).replace("&", "§"));
+			event.setLine(0, event.getLine(0).replace("&", "ï¿½"));
 		}
 		if (event.getLine(1).contains("&")) {
-			event.setLine(1, event.getLine(1).replace("&", "§"));
+			event.setLine(1, event.getLine(1).replace("&", "ï¿½"));
 		}
 		if (event.getLine(2).contains("&")) {
-			event.setLine(2, event.getLine(2).replace("&", "§"));
+			event.setLine(2, event.getLine(2).replace("&", "ï¿½"));
 		}
 		if (event.getLine(3).contains("&")) {
-			event.setLine(3, event.getLine(3).replace("&", "§"));
+			event.setLine(3, event.getLine(3).replace("&", "ï¿½"));
 		}
 		if (event.getLine(0).equalsIgnoreCase("sopa") || event.getLine(0).equalsIgnoreCase("sopas")) {
-			event.setLine(0, "§3Celtz");
-			event.setLine(1, "§bSopas");
-			event.setLine(2, "§6§m>-----<");
+			event.setLine(0, "ï¿½3Celtz");
+			event.setLine(1, "ï¿½bSopas");
+			event.setLine(2, "ï¿½6ï¿½m>-----<");
 			event.setLine(3, " ");
 		}
 		if (event.getLine(0).equalsIgnoreCase("recraft") || event.getLine(0).equalsIgnoreCase("recrafts")) {
-			event.setLine(0, "§3Celtz");
-			event.setLine(1, "§bRecraft");
-			event.setLine(2, "§6§m>-----<");
+			event.setLine(0, "ï¿½3Celtz");
+			event.setLine(1, "ï¿½bRecraft");
+			event.setLine(2, "ï¿½6ï¿½m>-----<");
 			event.setLine(3, " ");
 		}
 		if (event.getLine(0).contains("&")) {
-			event.setLine(0, event.getLine(0).replace("&", "§"));
+			event.setLine(0, event.getLine(0).replace("&", "ï¿½"));
 		}
 		if (event.getLine(1).contains("&")) {
-			event.setLine(1, event.getLine(1).replace("&", "§"));
+			event.setLine(1, event.getLine(1).replace("&", "ï¿½"));
 		}
 		if (event.getLine(2).contains("&")) {
-			event.setLine(2, event.getLine(2).replace("&", "§"));
+			event.setLine(2, event.getLine(2).replace("&", "ï¿½"));
 		}
 		if (event.getLine(3).contains("&")) {
-			event.setLine(3, event.getLine(3).replace("&", "§"));
+			event.setLine(3, event.getLine(3).replace("&", "ï¿½"));
 		}
 	}
 
@@ -437,7 +437,7 @@ public class BukkitListener extends ListenerHandler {
 	@EventHandler
 	public void onProjectile(final ProjectileHitEvent localProjectileHitEvent) {
 		if (localProjectileHitEvent.getEntity() instanceof Arrow) {
-			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) Handler.getInstance(), (Runnable) new Runnable() {
+			Bukkit.getScheduler().scheduleSyncDelayedTask((Plugin) WeavenPvP.getInstance(), (Runnable) new Runnable() {
 				@Override
 				public void run() {
 					localProjectileHitEvent.getEntity().remove();
@@ -479,7 +479,7 @@ public class BukkitListener extends ListenerHandler {
 	@EventHandler
 	public void onPickUp(final PlayerPickupItemEvent localPlayerPickupItemEvent) {
 		final Player player = localPlayerPickupItemEvent.getPlayer();
-		final Gamer gamer = Handler.getManager().getGamerManager().getGamer(player.getUniqueId());
+		final Gamer gamer = WeavenPvP.getManager().getGamerManager().getGamer(player.getUniqueId());
 		final Material localMaterial = localPlayerPickupItemEvent.getItem().getItemStack().getType();
 		if (gamer.getWarp().equalsIgnoreCase("1v1")) {
 			localPlayerPickupItemEvent.setCancelled(true);

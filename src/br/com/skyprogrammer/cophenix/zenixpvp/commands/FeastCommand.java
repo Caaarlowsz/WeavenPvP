@@ -7,7 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CommandHandler;
 
 public class FeastCommand extends CommandHandler {
@@ -21,14 +21,14 @@ public class FeastCommand extends CommandHandler {
 			return false;
 		}
 		final Player localPlayer = this.getPlayerInstance(commandSender);
-		final List<Location> listOfLocation = Handler.getManager().getFeast().getAllChestLocations();
+		final List<Location> listOfLocation = WeavenPvP.getManager().getFeast().getAllChestLocations();
 		if (listOfLocation.size() <= 0) {
-			localPlayer.sendMessage("§cNenhum §fBAU§c foi encontrado!");
+			localPlayer.sendMessage("ï¿½cNenhum ï¿½fBAUï¿½c foi encontrado!");
 			return true;
 		}
 		final int randomInt = new Random().nextInt(listOfLocation.size());
 		localPlayer.setCompassTarget((Location) listOfLocation.get((randomInt == 0) ? 0 : (randomInt - 1)));
-		localPlayer.sendMessage("§2Bussola §fAPONTANDO§2 para o §fFEAST§2!");
+		localPlayer.sendMessage("ï¿½2Bussola ï¿½fAPONTANDOï¿½2 para o ï¿½fFEASTï¿½2!");
 		return true;
 	}
 }

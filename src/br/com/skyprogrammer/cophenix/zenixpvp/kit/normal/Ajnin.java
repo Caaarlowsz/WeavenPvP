@@ -10,7 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CooldownHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
@@ -45,7 +45,7 @@ public class Ajnin extends Kit {
 				&& localEntityDamageByEntityEvent.getDamager() instanceof Player) {
 			final Player entityDamaged = (Player) localEntityDamageByEntityEvent.getEntity();
 			final Player entityDamager = (Player) localEntityDamageByEntityEvent.getDamager();
-			final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(entityDamager.getUniqueId());
+			final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(entityDamager.getUniqueId());
 			if (localGamer.getKit() == this) {
 				if (localEntityDamageByEntityEvent.isCancelled()) {
 					return;
@@ -58,21 +58,21 @@ public class Ajnin extends Kit {
 	@EventHandler
 	public void onPlayerToggleSneak(final PlayerToggleSneakEvent localPlayerToggleSneakEvent) {
 		final Player localPlayer = localPlayerToggleSneakEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.getKit() == this) {
 			if (!Ajnin.hashMapOfAjnin.containsKey(localPlayer)) {
-				localPlayer.sendMessage("§c§l" + this.getName() + "§c Voc\u00ea n\u00e3o §fHITOU§c nenhum player!");
+				localPlayer.sendMessage("ï¿½cï¿½l" + this.getName() + "ï¿½c Voc\u00ea n\u00e3o ï¿½fHITOUï¿½c nenhum player!");
 				return;
 			}
 			if (Ajnin.hashMapOfAjnin.get(localPlayer) == null) {
-				localPlayer.sendMessage("§c§l" + this.getName() + "§c Este player est\u00e1 §fOFFLINE!");
+				localPlayer.sendMessage("ï¿½cï¿½l" + this.getName() + "ï¿½c Este player est\u00e1 ï¿½fOFFLINE!");
 				return;
 			}
 			if (Ajnin.hashMapOfAjnin.get(localPlayer).getLocation().distance(localPlayer.getLocation()) > 80.0) {
-				localPlayer.sendMessage("§c§l" + this.getName() + "§c Este player est\u00e1 §fMUITO LONGE!");
+				localPlayer.sendMessage("ï¿½cï¿½l" + this.getName() + "ï¿½c Este player est\u00e1 ï¿½fMUITO LONGE!");
 				return;
 			}
-			if (Handler.getManager().getProtectionManager().isProtected(Ajnin.hashMapOfAjnin.get(localPlayer))) {
+			if (WeavenPvP.getManager().getProtectionManager().isProtected(Ajnin.hashMapOfAjnin.get(localPlayer))) {
 				return;
 			}
 			if (CooldownHandler.onCooldown(localPlayer)) {
@@ -82,8 +82,8 @@ public class Ajnin extends Kit {
 			CooldownHandler.addCooldown(localPlayer, this.getCooldown());
 			final Player playerToTeleport = Ajnin.hashMapOfAjnin.get(localPlayer);
 			playerToTeleport.teleport((Entity) localPlayer);
-			localPlayer.sendMessage("§2§l" + this.getName() + "§2 Voc\u00ea teleportou o player §f"
-					+ playerToTeleport.getName() + "§2 para sua localiza\u00e7\u00e3o!");
+			localPlayer.sendMessage("ï¿½2ï¿½l" + this.getName() + "ï¿½2 Voc\u00ea teleportou o player ï¿½f"
+					+ playerToTeleport.getName() + "ï¿½2 para sua localiza\u00e7\u00e3o!");
 			localPlayer.playSound(localPlayer.getLocation(), Sound.ENDERMAN_TELEPORT, 1.5f, 1.5f);
 		}
 	}

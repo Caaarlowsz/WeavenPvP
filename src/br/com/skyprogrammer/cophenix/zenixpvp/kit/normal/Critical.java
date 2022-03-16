@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
 
@@ -33,17 +33,17 @@ public class Critical extends Kit {
 				&& localEntityDamageByEntityEvent.getDamager() instanceof Player) {
 			final Player localDamaged = (Player) localEntityDamageByEntityEvent.getEntity();
 			final Player localDamager = (Player) localEntityDamageByEntityEvent.getDamager();
-			final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localDamager.getUniqueId());
+			final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localDamager.getUniqueId());
 			if (localGamer.getKit() == this) {
 				final int integerOfChance = new Random().nextInt(100);
 				if (integerOfChance > 0 && integerOfChance < 31) {
 					localDamager.getWorld().playEffect(localDamager.getLocation(), Effect.STEP_SOUND,
 							(Object) Material.REDSTONE_BLOCK, 10);
 					localEntityDamageByEntityEvent.setDamage(localEntityDamageByEntityEvent.getDamage() + 2.5);
-					localDamaged.sendMessage("§c§l" + this.getName()
-							+ "§c Voc\u00ea recebeu um golpe §fCRITICO§c do player §f" + localDamager.getName());
-					localDamager.sendMessage("§2§l" + this.getName()
-							+ "§2 Voc\u00ea deu um golpe §fCRITICO§2 no player §f" + localDamaged.getName());
+					localDamaged.sendMessage("ï¿½cï¿½l" + this.getName()
+							+ "ï¿½c Voc\u00ea recebeu um golpe ï¿½fCRITICOï¿½c do player ï¿½f" + localDamager.getName());
+					localDamager.sendMessage("ï¿½2ï¿½l" + this.getName()
+							+ "ï¿½2 Voc\u00ea deu um golpe ï¿½fCRITICOï¿½2 no player ï¿½f" + localDamaged.getName());
 				}
 			}
 		}

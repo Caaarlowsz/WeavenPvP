@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.util.Vector;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CooldownHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
@@ -54,7 +54,7 @@ public class Grappler extends Kit {
 	@EventHandler
 	private void onInteractGrappler(final PlayerInteractEvent localPlayerInteractEvent) {
 		final Player player = localPlayerInteractEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(player.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(player.getUniqueId());
 		if (player.getItemInHand().getType() == this.getMaterial() && localGamer.getKit() == this) {
 			localPlayerInteractEvent.setCancelled(true);
 			if (CooldownHandler.onCooldown(player)) {
@@ -95,7 +95,7 @@ public class Grappler extends Kit {
 			return;
 		}
 		final Player localPlayer = (Player) localEntityDamageByEntityEvent.getEntity();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.getKit() != this) {
 			return;
 		}
@@ -112,7 +112,7 @@ public class Grappler extends Kit {
 	public void onGrapplerFallDamage(final EntityDamageEvent localEntityDamageEvent) {
 		if (localEntityDamageEvent.getEntity() instanceof Player) {
 			final Player localPlayer = (Player) localEntityDamageEvent.getEntity();
-			final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+			final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 			if (localGamer.getKit() == this && localEntityDamageEvent.getCause() == EntityDamageEvent.DamageCause.FALL
 					&& localEntityDamageEvent.getDamage() > 12.0) {
 				localEntityDamageEvent.setDamage(12.0);

@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CooldownHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
@@ -28,7 +28,7 @@ public class Hulk extends Kit {
 	@EventHandler
 	public void onInteractEntity(final PlayerInteractEntityEvent localPlayerInteractEntityEvent) {
 		final Player localPlayer = localPlayerInteractEntityEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.getKit() == this && localPlayer.getItemInHand().getType() == this.getMaterial()
 				&& localPlayerInteractEntityEvent.getRightClicked() instanceof Player) {
 			if (CooldownHandler.onCooldown(localPlayer)) {
@@ -37,15 +37,15 @@ public class Hulk extends Kit {
 			}
 			if (localPlayer.getPassenger() != null) {
 				localPlayer.sendMessage(
-						"§c§l" + this.getName() + "§c Voc\u00ea j\u00e1 possui §fALGUEM§c em sua §fCABE\u00c7A!");
+						"ï¿½cï¿½l" + this.getName() + "ï¿½c Voc\u00ea j\u00e1 possui ï¿½fALGUEMï¿½c em sua ï¿½fCABE\u00c7A!");
 				return;
 			}
 			CooldownHandler.addCooldown(localPlayer, this.getCooldown());
 			localPlayer.setPassenger(localPlayerInteractEntityEvent.getRightClicked());
-			localPlayer.sendMessage("§2§l" + this.getName() + "§2 Voc\u00ea §fPEGOU§2 o player §f"
+			localPlayer.sendMessage("ï¿½2ï¿½l" + this.getName() + "ï¿½2 Voc\u00ea ï¿½fPEGOUï¿½2 o player ï¿½f"
 					+ ((Player) localPlayerInteractEntityEvent.getRightClicked()).getName());
 			((Player) localPlayerInteractEntityEvent.getRightClicked()).sendMessage(
-					"§c§l" + this.getName() + "§c Voc\u00ea foi §fPEGO§c pelo player §f" + localPlayer.getName());
+					"ï¿½cï¿½l" + this.getName() + "ï¿½c Voc\u00ea foi ï¿½fPEGOï¿½c pelo player ï¿½f" + localPlayer.getName());
 		}
 	}
 }

@@ -1,4 +1,4 @@
-main: br.com.skyprogrammer.cophenix.zenixpvp.Handler
+main: com.github.caaarlowsz.weavenmc.kitpvp.Handler
 name: WeavenPvP
 version: 0.0.1-SNAPSHOT
 author: skyprogrammer

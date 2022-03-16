@@ -14,7 +14,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 
 public class GladiatorConstructor {
 	private List<Block> blocks;
@@ -153,7 +153,7 @@ public class GladiatorConstructor {
 			public void run() {
 				GladiatorConstructor.this.destroy();
 			}
-		}.runTaskLater((Plugin) Handler.getInstance(), timeBeforeCancel);
+		}.runTaskLater((Plugin) WeavenPvP.getInstance(), timeBeforeCancel);
 	}
 
 	public void startWhiter(final long timeBeforeStart) {
@@ -168,7 +168,7 @@ public class GladiatorConstructor {
 							.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 10000, 2));
 				}
 			}
-		}.runTaskLater((Plugin) Handler.getInstance(), timeBeforeStart);
+		}.runTaskLater((Plugin) WeavenPvP.getInstance(), timeBeforeStart);
 	}
 
 	public void destroy() {

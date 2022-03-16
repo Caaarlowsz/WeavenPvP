@@ -10,13 +10,13 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 
 public class FeastConfig {
 	private static FileConfiguration fileConfiguration;
 	private static File file;
 
-	public FeastConfig(final Handler handlerInstance, final String exactlyNameOfTheFile) {
+	public FeastConfig(final WeavenPvP handlerInstance, final String exactlyNameOfTheFile) {
 		if (!handlerInstance.getDataFolder().exists()) {
 			handlerInstance.getDataFolder().mkdir();
 		}

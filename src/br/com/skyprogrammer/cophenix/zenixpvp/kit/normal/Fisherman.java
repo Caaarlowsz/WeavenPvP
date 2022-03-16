@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerFishEvent;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
 
@@ -31,7 +31,7 @@ public class Fisherman extends Kit {
 		final Player localPlayer = localPlayerFishEvent.getPlayer();
 		final Entity localCaughtedEntity = localPlayerFishEvent.getCaught();
 		final Block localBlockOfHook = localPlayerFishEvent.getHook().getLocation().getBlock();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localCaughtedEntity != null && localCaughtedEntity != localBlockOfHook && localGamer.getKit() == this) {
 			localCaughtedEntity.teleport(localPlayer.getPlayer().getLocation());
 		}

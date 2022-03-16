@@ -3,7 +3,7 @@ package br.com.skyprogrammer.cophenix.zenixpvp.commands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CommandHandler;
 
@@ -23,14 +23,14 @@ public class BuildCommand extends CommandHandler {
 			this.sendNoPermission(commandSender);
 			return true;
 		}
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.isBuildEnabled()) {
 			localGamer.setBuildEnabled(false);
-			localPlayer.sendMessage("§cVoc\u00ea §fDESATIVOU§c o modo builder!");
+			localPlayer.sendMessage("ï¿½cVoc\u00ea ï¿½fDESATIVOUï¿½c o modo builder!");
 			return true;
 		}
 		localGamer.setBuildEnabled(true);
-		localPlayer.sendMessage("§2Voc\u00ea §fATIVOU§2 o modo builder!");
+		localPlayer.sendMessage("ï¿½2Voc\u00ea ï¿½fATIVOUï¿½2 o modo builder!");
 		return true;
 	}
 }

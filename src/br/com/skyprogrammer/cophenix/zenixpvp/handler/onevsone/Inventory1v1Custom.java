@@ -17,7 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 
 public final class Inventory1v1Custom implements Listener {
 	public static final HashMap<Player, String> playername;
@@ -245,78 +245,78 @@ public final class Inventory1v1Custom implements Listener {
 	}
 
 	public static final void openCustomInventory(final Player bp, final Player customer) {
-		final Inventory custom = Bukkit.createInventory((InventoryHolder) bp, 54, "§c1v1 contra " + customer.getName());
+		final Inventory custom = Bukkit.createInventory((InventoryHolder) bp, 54, "ï¿½c1v1 contra " + customer.getName());
 		for (int i = 0; i < 54; ++i) {
-			custom.setItem(i, newItem(Material.STAINED_GLASS_PANE, "§b§l-", 1, (byte) 8));
+			custom.setItem(i, newItem(Material.STAINED_GLASS_PANE, "ï¿½bï¿½l-", 1, (byte) 8));
 		}
-		custom.setItem(43, newItem(Material.WOOL, "§a§lDesafiar Jogador", 1, (byte) 5));
-		custom.setItem(44, newItem(Material.WOOL, "§a§lDesafiar Jogador", 1, (byte) 5));
-		custom.setItem(52, newItem(Material.WOOL, "§a§lDesafiar Jogador", 1, (byte) 5));
-		custom.setItem(53, newItem(Material.WOOL, "§a§lDesafiar Jogador", 1, (byte) 5));
+		custom.setItem(43, newItem(Material.WOOL, "ï¿½aï¿½lDesafiar Jogador", 1, (byte) 5));
+		custom.setItem(44, newItem(Material.WOOL, "ï¿½aï¿½lDesafiar Jogador", 1, (byte) 5));
+		custom.setItem(52, newItem(Material.WOOL, "ï¿½aï¿½lDesafiar Jogador", 1, (byte) 5));
+		custom.setItem(53, newItem(Material.WOOL, "ï¿½aï¿½lDesafiar Jogador", 1, (byte) 5));
 		if (Inventory1v1Custom.espada.containsKey(bp)) {
 			if (Inventory1v1Custom.espada.get(bp) == Material.WOOD_SWORD) {
-				custom.setItem(20, newItem(Material.WOOD_SWORD, "§6Espada de Madeira",
-						new String[] { "§3Clique aqui para mudar", "§3o tipo de sua espada!", "" }));
+				custom.setItem(20, newItem(Material.WOOD_SWORD, "ï¿½6Espada de Madeira",
+						new String[] { "ï¿½3Clique aqui para mudar", "ï¿½3o tipo de sua espada!", "" }));
 			} else if (Inventory1v1Custom.espada.get(bp) == Material.STONE_SWORD) {
-				custom.setItem(20, newItem(Material.STONE_SWORD, "§6Espada de Pedra",
-						new String[] { "§3Clique aqui para mudar", "§3o tipo de sua espada!", "" }));
+				custom.setItem(20, newItem(Material.STONE_SWORD, "ï¿½6Espada de Pedra",
+						new String[] { "ï¿½3Clique aqui para mudar", "ï¿½3o tipo de sua espada!", "" }));
 			} else if (Inventory1v1Custom.espada.get(bp) == Material.IRON_SWORD) {
-				custom.setItem(20, newItem(Material.IRON_SWORD, "§6Espada de Ferro",
-						new String[] { "§3Clique aqui para mudar", "§3o tipo de sua espada!", "" }));
+				custom.setItem(20, newItem(Material.IRON_SWORD, "ï¿½6Espada de Ferro",
+						new String[] { "ï¿½3Clique aqui para mudar", "ï¿½3o tipo de sua espada!", "" }));
 			} else if (Inventory1v1Custom.espada.get(bp) == Material.DIAMOND_SWORD) {
-				custom.setItem(20, newItem(Material.DIAMOND_SWORD, "§6Espada de Diamante",
-						new String[] { "§3Clique aqui para mudar", "§3o tipo de sua espada!", "" }));
+				custom.setItem(20, newItem(Material.DIAMOND_SWORD, "ï¿½6Espada de Diamante",
+						new String[] { "ï¿½3Clique aqui para mudar", "ï¿½3o tipo de sua espada!", "" }));
 			}
 		}
 		if (Inventory1v1Custom.armaduras.containsKey(bp)) {
 			if (Inventory1v1Custom.armaduras.get(bp) == "LEATHER") {
-				custom.setItem(21, newItem(Material.LEATHER_CHESTPLATE, "§eArmadura de Couro",
-						new String[] { "§3Clique aqui para mudar", "§3o tipo de sua armadura!", "" }));
+				custom.setItem(21, newItem(Material.LEATHER_CHESTPLATE, "ï¿½eArmadura de Couro",
+						new String[] { "ï¿½3Clique aqui para mudar", "ï¿½3o tipo de sua armadura!", "" }));
 			} else if (Inventory1v1Custom.armaduras.get(bp) == "IRON") {
-				custom.setItem(21, newItem(Material.IRON_CHESTPLATE, "§eArmadura de Ferro",
-						new String[] { "§3Clique aqui para mudar", "§3o tipo de sua armadura!", "" }));
+				custom.setItem(21, newItem(Material.IRON_CHESTPLATE, "ï¿½eArmadura de Ferro",
+						new String[] { "ï¿½3Clique aqui para mudar", "ï¿½3o tipo de sua armadura!", "" }));
 			} else if (Inventory1v1Custom.armaduras.get(bp) == "DIAMOND") {
-				custom.setItem(21, newItem(Material.DIAMOND_CHESTPLATE, "§eArmadura de Diamante",
-						new String[] { "§3Clique aqui para mudar", "§3o tipo de sua armadura!", "" }));
+				custom.setItem(21, newItem(Material.DIAMOND_CHESTPLATE, "ï¿½eArmadura de Diamante",
+						new String[] { "ï¿½3Clique aqui para mudar", "ï¿½3o tipo de sua armadura!", "" }));
 			} else if (Inventory1v1Custom.armaduras.get(bp) == "SEM") {
-				custom.setItem(21, newItem(Material.GOLD_HELMET, "§eSem Armadura",
-						new String[] { "§3Clique aqui para mudar", "§3o tipo de sua armadura!", "" }));
+				custom.setItem(21, newItem(Material.GOLD_HELMET, "ï¿½eSem Armadura",
+						new String[] { "ï¿½3Clique aqui para mudar", "ï¿½3o tipo de sua armadura!", "" }));
 			}
 		}
 		if (Inventory1v1Custom.recrafttype.containsKey(bp)) {
 			if (Inventory1v1Custom.recrafttype.get(bp) == "COGUMELO") {
-				custom.setItem(22, newItem(Material.RED_MUSHROOM, "§bRecrafts de Cogumelo",
-						new String[] { "§3Clique aqui para mudar", "§3o tipo de seu recraft!", "" }));
+				custom.setItem(22, newItem(Material.RED_MUSHROOM, "ï¿½bRecrafts de Cogumelo",
+						new String[] { "ï¿½3Clique aqui para mudar", "ï¿½3o tipo de seu recraft!", "" }));
 			} else if (Inventory1v1Custom.recrafttype.get(bp) == "COCOABEAN") {
-				custom.setItem(22, newItem(Material.COCOA, "§bRecrafts de Cocoabean",
-						new String[] { "§3Clique aqui para mudar", "§3o tipo de seu recraft!", "" }));
+				custom.setItem(22, newItem(Material.COCOA, "ï¿½bRecrafts de Cocoabean",
+						new String[] { "ï¿½3Clique aqui para mudar", "ï¿½3o tipo de seu recraft!", "" }));
 			}
 		}
 		if (Inventory1v1Custom.recraft.containsKey(bp)) {
 			if (Inventory1v1Custom.recraft.get(bp)) {
-				custom.setItem(23, newItem(Material.BROWN_MUSHROOM, "§aCom Recraft",
-						new String[] { "§3Clique aqui para", "§3desativar o recraft!", "" }));
+				custom.setItem(23, newItem(Material.BROWN_MUSHROOM, "ï¿½aCom Recraft",
+						new String[] { "ï¿½3Clique aqui para", "ï¿½3desativar o recraft!", "" }));
 			} else if (!Inventory1v1Custom.recraft.get(bp)) {
-				custom.setItem(23, newItem(Material.MAGMA_CREAM, "§cSem Recraft",
-						new String[] { "§3Clique aqui para", "§3ativar o recraft!", "" }));
+				custom.setItem(23, newItem(Material.MAGMA_CREAM, "ï¿½cSem Recraft",
+						new String[] { "ï¿½3Clique aqui para", "ï¿½3ativar o recraft!", "" }));
 			}
 		}
 		if (Inventory1v1Custom.sharpness.containsKey(bp)) {
 			if (Inventory1v1Custom.sharpness.get(bp)) {
-				custom.setItem(24, newItem(Material.ENCHANTED_BOOK, "§3Com sharpness",
-						new String[] { "§3Clique aqui para", "§3tirar a afia\u00e7ao da espada!", "" }));
+				custom.setItem(24, newItem(Material.ENCHANTED_BOOK, "ï¿½3Com sharpness",
+						new String[] { "ï¿½3Clique aqui para", "ï¿½3tirar a afia\u00e7ao da espada!", "" }));
 			} else if (!Inventory1v1Custom.sharpness.get(bp)) {
-				custom.setItem(24, newItem(Material.BOOK, "§3Sem sharpness",
-						new String[] { "§3Clique aqui para", "§3colocar afia\u00e7ao na espada!", "" }));
+				custom.setItem(24, newItem(Material.BOOK, "ï¿½3Sem sharpness",
+						new String[] { "ï¿½3Clique aqui para", "ï¿½3colocar afia\u00e7ao na espada!", "" }));
 			}
 		}
 		if (Inventory1v1Custom.fullsoup.containsKey(bp)) {
 			if (Inventory1v1Custom.fullsoup.get(bp)) {
-				custom.setItem(29, newItem(Material.MUSHROOM_SOUP, "§2Full sopa",
-						new String[] { "§3Clique aqui para", "§3usar 1 hotbar apenas", "" }));
+				custom.setItem(29, newItem(Material.MUSHROOM_SOUP, "ï¿½2Full sopa",
+						new String[] { "ï¿½3Clique aqui para", "ï¿½3usar 1 hotbar apenas", "" }));
 			} else if (!Inventory1v1Custom.fullsoup.get(bp)) {
-				custom.setItem(29, newItem(Material.BOWL, "§21 Hotbar",
-						new String[] { "§3Clique aqui para", "§3usar full sopa", "" }));
+				custom.setItem(29, newItem(Material.BOWL, "ï¿½21 Hotbar",
+						new String[] { "ï¿½3Clique aqui para", "ï¿½3usar full sopa", "" }));
 			}
 		}
 		bp.openInventory(custom);
@@ -326,13 +326,13 @@ public final class Inventory1v1Custom implements Listener {
 	public final void onCustomItensChange(final InventoryClickEvent e) {
 		if (e.getWhoClicked() instanceof Player) {
 			final Player bp = (Player) e.getWhoClicked();
-			if (e.getInventory().getName().equalsIgnoreCase("§c1v1 contra " + Inventory1v1Custom.playername.get(bp))
+			if (e.getInventory().getName().equalsIgnoreCase("ï¿½c1v1 contra " + Inventory1v1Custom.playername.get(bp))
 					&& e.getCurrentItem() != null) {
 				if (e.getCurrentItem().getType() == Material.WOOD_SWORD) {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.espada.put(bp, Material.STONE_SWORD);
@@ -342,7 +342,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.espada.put(bp, Material.IRON_SWORD);
@@ -352,7 +352,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.espada.put(bp, Material.DIAMOND_SWORD);
@@ -362,7 +362,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.espada.put(bp, Material.WOOD_SWORD);
@@ -372,7 +372,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.armaduras.put(bp, "IRON");
@@ -382,7 +382,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.armaduras.put(bp, "DIAMOND");
@@ -392,7 +392,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.armaduras.put(bp, "SEM");
@@ -402,7 +402,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.armaduras.put(bp, "LEATHER");
@@ -412,7 +412,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.recrafttype.put(bp, "COCOABEAN");
@@ -422,7 +422,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.recrafttype.put(bp, "COGUMELO");
@@ -432,7 +432,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.recraft.put(bp, false);
@@ -442,7 +442,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.recraft.put(bp, true);
@@ -452,7 +452,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.sharpness.put(bp, false);
@@ -462,7 +462,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.sharpness.put(bp, true);
@@ -472,7 +472,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.fullsoup.put(bp, false);
@@ -482,7 +482,7 @@ public final class Inventory1v1Custom implements Listener {
 					e.setCancelled(true);
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
 					Inventory1v1Custom.fullsoup.put(bp, true);
@@ -493,16 +493,16 @@ public final class Inventory1v1Custom implements Listener {
 					bp.closeInventory();
 					if (Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)) == null) {
 						bp.closeInventory();
-						bp.sendMessage("§cEste jogador est\u00e1 offline.");
+						bp.sendMessage("ï¿½cEste jogador est\u00e1 offline.");
 						return;
 					}
-					bp.sendMessage("§7Voc\u00ea enviou um desafio de 1v1 customizado para §b"
+					bp.sendMessage("ï¿½7Voc\u00ea enviou um desafio de 1v1 customizado para ï¿½b"
 							+ Inventory1v1Custom.playername.get(bp));
 					Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp))
-							.sendMessage("§eVoc\u00ea recebeu desafio de 1v1 customizado de §7" + bp.getName());
+							.sendMessage("ï¿½eVoc\u00ea recebeu desafio de 1v1 customizado de ï¿½7" + bp.getName());
 					X1WarpListener.cooldown.add(bp);
 					X1WarpListener.challengec.put(bp, Bukkit.getPlayer((String) Inventory1v1Custom.playername.get(bp)));
-					Bukkit.getScheduler().runTaskLater((Plugin) Handler.getInstance(), (Runnable) new Runnable() {
+					Bukkit.getScheduler().runTaskLater((Plugin) WeavenPvP.getInstance(), (Runnable) new Runnable() {
 						@Override
 						public void run() {
 							if (X1WarpListener.cooldown.contains(bp)) {

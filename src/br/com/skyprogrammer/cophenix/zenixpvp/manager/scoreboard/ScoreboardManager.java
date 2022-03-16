@@ -7,7 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.manager.Manager;
 import br.com.skyprogrammer.cophenix.zenixpvp.scoreboard.constructor.ScoreboardHandler;
@@ -21,7 +21,7 @@ public class ScoreboardManager {
 
 	public ScoreboardManager(final Manager instanceOfManager) {
 		this.instanceOfManager = instanceOfManager;
-		this.instanceOfStringAnimated = new StringAnimated(" CELTZ PVP ", "§f§l", "§3§l", "§b§l", 3);
+		this.instanceOfStringAnimated = new StringAnimated(" CELTZ PVP ", "ï¿½fï¿½l", "ï¿½3ï¿½l", "ï¿½bï¿½l", 3);
 		this.animationOfString = this.instanceOfStringAnimated.next();
 		this.initialize();
 	}
@@ -34,22 +34,22 @@ public class ScoreboardManager {
 				Player[] onlinePlayers;
 				for (int length = (onlinePlayers = Bukkit.getOnlinePlayers()).length, i = 0; i < length; ++i) {
 					final Player localPlayer = onlinePlayers[i];
-					final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+					final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 					final ScoreboardHandler localScoreboardHandler = localGamer.getScoreboardHandler();
 					if (localScoreboardHandler != null) {
 						final WavePlayer wp = WavePlayer.getPlayer(localPlayer.getUniqueId());
 						final Objective objectiveFromScoreboardHandler = localScoreboardHandler
 								.getObjectiveOfCreatedScoreboard();
 						objectiveFromScoreboardHandler.setDisplayName(ScoreboardManager.this.animationOfString);
-						localScoreboardHandler.addLine(14, "§fKills: §3" + localGamer.getKills());
-						localScoreboardHandler.addLine(13, "§fDeaths: §3" + localGamer.getDeaths());
-						localScoreboardHandler.addLine(11, "§fKillStreak: §b" + localGamer.getKillStreak());
-						localScoreboardHandler.addLine(10, "§fXP: §b" + wp.getXp());
-						localScoreboardHandler.addLine(8, "§fKit: §e" + localGamer.getKit().getName());
+						localScoreboardHandler.addLine(14, "ï¿½fKills: ï¿½3" + localGamer.getKills());
+						localScoreboardHandler.addLine(13, "ï¿½fDeaths: ï¿½3" + localGamer.getDeaths());
+						localScoreboardHandler.addLine(11, "ï¿½fKillStreak: ï¿½b" + localGamer.getKillStreak());
+						localScoreboardHandler.addLine(10, "ï¿½fXP: ï¿½b" + wp.getXp());
+						localScoreboardHandler.addLine(8, "ï¿½fKit: ï¿½e" + localGamer.getKit().getName());
 					}
 				}
 			}
-		}.runTaskTimerAsynchronously((Plugin) Handler.getInstance(), 2L, 2L);
+		}.runTaskTimerAsynchronously((Plugin) WeavenPvP.getInstance(), 2L, 2L);
 	}
 
 	public void createScoreboardToPlayer(final Player playerToCreate) {
@@ -60,15 +60,15 @@ public class ScoreboardManager {
 		final Objective objectiveFromScoreboardHandler = localScoreboardHandler.getObjectiveOfCreatedScoreboard();
 		objectiveFromScoreboardHandler.setDisplayName(this.animationOfString);
 		localScoreboardHandler.addLine("");
-		localScoreboardHandler.addLine("§fKills: §3" + localGamer.getKills());
-		localScoreboardHandler.addLine("§fDeaths: §3" + localGamer.getDeaths());
+		localScoreboardHandler.addLine("ï¿½fKills: ï¿½3" + localGamer.getKills());
+		localScoreboardHandler.addLine("ï¿½fDeaths: ï¿½3" + localGamer.getDeaths());
 		localScoreboardHandler.addLine("");
-		localScoreboardHandler.addLine("§fKill Streak: §3" + localGamer.getKillStreak());
-		localScoreboardHandler.addLine("§fXP: §b" + wp.getXp());
+		localScoreboardHandler.addLine("ï¿½fKill Streak: ï¿½3" + localGamer.getKillStreak());
+		localScoreboardHandler.addLine("ï¿½fXP: ï¿½b" + wp.getXp());
 		localScoreboardHandler.addLine("");
-		localScoreboardHandler.addLine("§fKit: §e" + localGamer.getKit().getName());
+		localScoreboardHandler.addLine("ï¿½fKit: ï¿½e" + localGamer.getKit().getName());
 		localScoreboardHandler.addLine("");
-		localScoreboardHandler.addLine("§bwww.celtzmc.com");
+		localScoreboardHandler.addLine("ï¿½bwww.celtzmc.com");
 		final Scoreboard createdScoreboard = localScoreboardHandler.getCreatedScoreboard();
 		playerToCreate.setScoreboard(createdScoreboard);
 		localGamer.setScoreboardHandler(localScoreboardHandler);

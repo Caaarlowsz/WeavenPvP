@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
 
@@ -31,7 +31,7 @@ public class Camel extends Kit {
 	@EventHandler
 	public void onPlayerMove(final PlayerMoveEvent localPlayerMoveEvent) {
 		final Player localPlayer = localPlayerMoveEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.getKit() == this) {
 			final Location localLocation = localPlayer.getLocation().clone().add(0.0, -1.0, 0.0);
 			final Block localBlock = localLocation.getBlock();

@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import br.com.skyprogrammer.cophenix.zenixpvp.Handler;
+import com.github.caaarlowsz.weavenmc.kitpvp.WeavenPvP;
 import br.com.skyprogrammer.cophenix.zenixpvp.account.gamer.Gamer;
 import br.com.skyprogrammer.cophenix.zenixpvp.handler.CooldownHandler;
 import br.com.skyprogrammer.cophenix.zenixpvp.kit.Kit;
@@ -32,7 +32,7 @@ public class Thor extends Kit {
 	@EventHandler
 	public void onThor(final PlayerInteractEvent localPlayerInteractEvent) {
 		final Player localPlayer = localPlayerInteractEvent.getPlayer();
-		final Gamer localGamer = Handler.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
+		final Gamer localGamer = WeavenPvP.getManager().getGamerManager().getGamer(localPlayer.getUniqueId());
 		if (localGamer.getKit() == this && localPlayer.getItemInHand().getType() == this.getMaterial()) {
 			localPlayerInteractEvent.setCancelled(true);
 			if (CooldownHandler.onCooldown(localPlayer)) {
@@ -48,7 +48,7 @@ public class Thor extends Kit {
 						blockToThor.setType(Material.AIR);
 					}
 				}
-			}.runTaskLater((Plugin) Handler.getInstance(), 25L);
+			}.runTaskLater((Plugin) WeavenPvP.getInstance(), 25L);
 		}
 	}
 }
